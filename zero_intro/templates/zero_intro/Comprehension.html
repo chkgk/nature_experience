@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Room 1: Quiz
+{% endblock %}
+
+{% block content %}
+Welcome to the first room. <br>
+Here you have the chance to check whether you have properly understood the rules of the game. Please answer the following questions. <br>
+
+{% for field in form %}
+        {% formfield field %}
+        <hr/>
+    {% endfor %}
+
+
+{% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $('#form').attr('novalidate', 'novalidate');
+    </script>
+{% endblock%}
