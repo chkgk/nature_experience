@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    {% if player.round_number == 1 %}
+        {% if player.timeout %}
+            <p>
+                You took too long to make a decision. <br>
+                You are redirected to the Grouping Page now but you will not be matched.  Just click "Exit the experiment" after waiting for 2 minutes on the Grouping Page. That way, you will still get your show-up fee of 0.5 $.
+            </p>
+        {% elif player.timeout_feelings %}
+            <p>
+                You took too long to make a decision. <br>
+                You are redirected to the Grouping Page now but you will not be matched.  Just click "Exit the experiment" after waiting for 2 minutes on the Grouping Page. That way, you will still get your show-up fee of 0.5 $.
+            </p>
+        {% else %}
+            <p>The other player took too long to make a decision.</p>
+               You are redirected to the Grouping Page now but you will not be matched.  Just click "Exit the experiment" after waiting for 2 minutes on the Grouping Page. That way, you will still get your show-up fee of 0.5 $.
+        {% endif %}
+
+    {% else %}
+    {# round 2 #}
+
+        {% if player.timeout or player.timeout_feelings %}
+            <p>
+                You took too long to make a decision. <br>
+                Please click "next" to complete the survey and get your payout.
+            </p>
+        {% else %}
+            <p>
+                The other player took too long to make a decision.<br>
+                Please click "next" to complete the survey and get your payout.
+            </p>
+        {% endif %}
+    {% endif %}
+
+
+    {% next_button %}
+
+{% endblock %}
