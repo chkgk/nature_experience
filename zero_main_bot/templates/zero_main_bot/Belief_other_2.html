@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Page title
+{% endblock %}
+
+{% block content %}
+What is your gut feeling - did your co-player just choose:
+<p>
+<b> A </b> or  <b>  B </b> ?
+    {% next_button %}
+
+{% endblock %}
