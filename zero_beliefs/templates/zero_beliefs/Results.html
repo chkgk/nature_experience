@@ -15,12 +15,12 @@
         {% endif %}
 
 
- {% if green_ball %}
-    The ball drawn from the urn is <b>green</b>. <br>
- {% else %}
-    The ball drawn from the urn is <b>red</b>. <br>
- {% endif %}
- As a result you earned <b>{{ player.display_payoff }}</b> if this room is selected for payment.
+     {% if green_ball %}
+        The ball drawn from the urn is <b>green</b>. <br>
+     {% else %}
+        The ball drawn from the urn is <b>red</b>. <br>
+     {% endif %}
+     As a result you earned <b>{{ player.display_payoff }}</b> if this room is selected for payment.
 
     </p>
 

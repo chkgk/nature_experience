@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   Completed
+{% endblock %}
+
+{% block content %}
+
+    Thank you for your participation, your answers were transmitted.
+
+    Your payment consists of the fixed reward of $ 0.50 and the payout from room 2 or room 3.<br>
+
+    In your case, room {{ payoff_round }} was chosen for payout, where you earned {{ player.participant.payoff }}.  <br>
+
+    In total, you receive: {{ player.participant.payoff_plus_participation_fee }}. <br>
+
+    If you have any questions regarding this study, please write a mail to the study team:
+    <a href = natcoop@awi.uni-heidelberg.de </a>.
+
+    {% next_button %}
+
+{% endblock %}
