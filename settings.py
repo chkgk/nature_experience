@@ -93,6 +93,13 @@ SESSION_CONFIGS = [
         'app_sequence': ['zero_intro', 'zero_main_1_bot', 'zero_main_2_bot', 'zero_outro'],
         'treatment': 'computer'
     },
+    {
+       'name': 'Game',
+       'display_name': "All Apps - New Instructions",
+       'num_demo_participants': 1,
+       'app_sequence': ['zero_intro', 'zero_main_bot', 'zero_main_human', 'zero_outro'],
+
+    },
 ]
 
 # ISO-639 code

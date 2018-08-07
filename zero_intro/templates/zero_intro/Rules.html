@@ -7,37 +7,37 @@
 
 {% block content %}
 
-    [if human] <br>
+[if human] <br>
 
-    You are randomly matched with a co-player. Your co-player is another participant in the exact same situation as you. <br>
+You are randomly matched with a co-player. Your co-player is another participant in the exact same situation as you. <br>
+<p>
+[else, if computer]  <br>
+You are randomly matched with a co-player. Your co-player is not a human, but a computer. Your play does not affect the computer’s decision. <br>
+<p>
+Three factors together determine your payoff from this decision:  <br>
+(1) The draw of a ball from an urn, <br>
+(2) your own decision, and  <br>
+(3) the decision by your co-player.  <br>
+<p>
+The urn from which the ball is drawn contains 100 balls. 20 balls are red, 80 are green.  <br>
+If a red ball is drawn, you receive nothing (US$ 0) irrespective of your and your co-player’s decision. So does your co-player.  <br>
+If a green ball is drawn, then your outcome depends on your and your co-player’s decision (see below). You will not know the outcome of the draw from the urn at the time of taking your decision. <br>
+<p>
+For your own decision, you have a choice between two options: Either you choose option A or option B. Your co-player has the same choice. <br>
+These are the possibilities: <br>
     <p>
-    [else, if computer]  <br>
-    You are randomly matched with a co-player. Your co-player is not a human, but a computer. Your play does not affect the computer’s decision. <br>
+        •	A green ball is drawn and <b>you</b> choose <b>option A</b> and your <b>co-player</b> chooses <b>option A</b>: You receive US$ 1. So does your co-player. <br>
+        •	A green ball is drawn and <b>you</b> choose <b>option A</b> and your <b>co-player</b> chooses <b>option B</b>: You receive US$ 1. Your co-player receives US$ 3. <br>
+        •	A green ball is drawn and <b>you</b> choose <b>option B</b> and your <b>co-player</b> chooses <b>option A</b>: You receive US$ 3. Your co-player receives US$ 1. <br>
+        •	A green ball is drawn and <b>you</b> choose <b>option B</b> and your <b>co-player</b> chooses <b>option B</b>: You receive nothing (US $ 0). So does your co-player. <br>
     <p>
-    Three factors together determine your payoff from this decision:  <br>
-    (1) The draw of a ball from an urn, <br>
-    (2) your own decision, and  <br>
-    (3) the decision by your co-player.  <br>
-    <p>
-    The urn from which the ball is drawn contains 100 balls. {{ red_balls }} balls are red, {{ green_balls }} are green.  <br>
-    If a red ball is drawn, you receive nothing (US$ 0) irrespective of your and your co-player’s choice. So does your co-player.  <br>
-    If a green ball is drawn, then your outcome depends on your and your co-player’s decision (see below). You will not know the outcome of the draw from the urn at the time of taking your decision. <br>
-    <p>
-    For your own decision, you have a choice between two options: Either you choose option A or option B. Your co-player has the same choice. <br>
-    These are the possibilities: <br>
-        <p>
-            •	A green ball is drawn and <b>you</b> choose <b>option A</b> and your <b>co-player</b> chooses <b>option A</b>: You receive US$ 1. So does your co-player. <br>
-            •	A green ball is drawn and <b>you</b> choose <b>option A</b> and your <b>co-player</b> chooses <b>option B</b>: You receive US$ 1. Your co-player receives US$ 3. <br>
-            •	A green ball is drawn and <b>you</b> choose <b>option B</b> and your <b>co-player</b> chooses <b>option A</b>: You receive US$ 3. Your co-player receives US$ 1. <br>
-            •	A green ball is drawn and <b>you</b> choose <b>option B</b> and your <b>co-player</b> chooses <b>option B</b>: You receive nothing (US $ 0). So does your co-player. <br>
-        <p>
-            To repeat: If a red ball has been drawn, you receive nothing (US$ 0).
+        To repeat: If a red ball has been drawn, you receive nothing (US$ 0). <br>
 
-    [if human] <br>
-    Based on previous sessions of this experiment, a co-player chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases. <br>
-    <p>
-    [else, if computer] <br>
-    On average, a computer chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases. <br>
+[if human] <br>
+Based on previous sessions of this experiment, a co-player chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases. <br>
+<p>
+[else, if computer] <br>
+On average, a computer chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases. <br>
 
     {% next_button %}
 
