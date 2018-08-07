@@ -9,9 +9,9 @@
 
     <p>
         {% if same_choice %}
-            Both of you chose <b>{{ my_decision }}</b>.
+            Both of you chose <b>{A/B}</b>.
         {% else %}
-            You chose <b>{{ my_decision }}</b>. The other participant chose <b>{{ opponent_decision }}</b>.
+            You chose <b>{A/B}</b>. The other participant chose <b>{A/B}</b>.
         {% endif %}
 
 
@@ -20,7 +20,7 @@
  {% else %}
     The ball drawn from the urn is <b>red</b>. <br>
  {% endif %}
- As a result you earned <b>{{ player.display_payoff }}</b> if this room is selected for payment.
+ As a result you earned <b>{payoff}</b> if this room is selected for payment.
 
     </p>
 

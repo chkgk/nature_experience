@@ -3,9 +3,29 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class MyPage(Page):
+class Decision1(Page):
     pass
 
+class Decision2(Page):
+    pass
+
+class Belief_choice_chance_1 (Page):
+    pass
+
+class Belief_color_1 (Page):
+    pass
+
+class Belief_other_1 (Page):
+    pass
+
+class Belief_choice_chance_2 (Page):
+    pass
+
+class Belief_color_2 (Page):
+    pass
+
+class Belief_other_2 (Page):
+    pass
 
 class ResultsWaitPage(WaitPage):
 
@@ -18,7 +38,13 @@ class Results(Page):
 
 
 page_sequence = [
-    MyPage,
-    ResultsWaitPage,
-    Results
+    Decision1,
+    Decision2,
+    Belief_choice_chance_1,
+    Belief_color_1,
+    Belief_other_1,
+    Belief_choice_chance_2,
+    Belief_color_2,
+    Belief_other_2,
+
 ]

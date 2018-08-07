@@ -28,9 +28,9 @@ class Group(BaseGroup):
 class Player(BasePlayer):
 
     question1 = models.IntegerField(
-        choices=[[0, 'the same real person in both rooms'],
-                 [2, 'a different real person in each room'],
-                 [1, 'a computer player']],
+        choices=[[0, 'the same real person in both rooms.'],
+                 [2, 'a different real person in each room.'],
+                 [1, 'a computer player.']],
         verbose_name='Which of the following is correct? In Room 2 and 3, my co-player is',
         widget=widgets.RadioSelect)
 
@@ -61,7 +61,7 @@ class Player(BasePlayer):
         choices=[[0, 'US $ 1'],
                  [2, 'US $ 0'],
                  [1, 'US $ 3']],
-        verbose_name='What is your payout if you choose A, your partner chooses B, and the ball is green?',
+        verbose_name='What is your payout if you choose A, your co-player chooses B, and the ball is green?',
         widget=widgets.RadioSelect)
 
     ##[option 1 is correct]  ##
@@ -70,7 +70,7 @@ class Player(BasePlayer):
         choices=[[0, 'US $ 1'],
                  [2, 'US $ 0'],
                  [1, 'US $ 3']],
-        verbose_name='What is your payout if you choose B, your partner chooses B, and the ball is green? ',
+        verbose_name='What is your payout if you choose B, your co-player chooses B, and the ball is green? ',
         widget=widgets.RadioSelect)
 
     ## [option 2 is correct] ##

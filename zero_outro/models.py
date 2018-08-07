@@ -37,12 +37,12 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect)
 
     education = models.StringField(
-        choices=['Less than high school degree', 'High School degree or equivalent (e.g. GED)', 'some college, but no degree', 'Associate degree',
+        choices=['Less than high school degree', 'High school degree or equivalent (e.g. GED)', 'Some college, but no degree', 'Associate degree',
                  'Bachelor degree', 'Graduate degree'],
         verbose_name='What is the highest level of school you have completed or the highest degree you have received?',
         widget=widgets.RadioSelect)
 
-    profession = models.StringField(
+    major = models.StringField(
         verbose_name='If you had at least some college education, please tell us your major: ')
 
     risk = models.FloatField(
