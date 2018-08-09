@@ -30,60 +30,45 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     treatment = models.CharField(choices=["computer", "human"], doc="treatment the participant played")
 
-
-    question1 = models.IntegerField(
-        choices=[[0, 'the same real person in both rooms.'],
+    c1_coplayer = models.SmallIntegerField(
+        choices=[[1, 'the same real person in both rooms.'],
                  [2, 'a different real person in each room.'],
-                 [1, 'a computer player.']],
+                 [3, 'a computer player.']],
         verbose_name='Which of the following is correct? In Room 2 and 3, my co-player is',
         widget=widgets.RadioSelect)
 
-    ##If human: option 2 is correct; else if robot: option 3 is correct##
-
-    ### questionx2 occurs if questionx is answered incorrectly. ###
-    ### values 0 and 1 are always wrong, value 2 is the correct answer ###
-
-    question2 = models.IntegerField(
-        choices=[[0, 'choose A more often than B.'],
+    c2_probabilities = models.SmallIntegerField(
+        choices=[[1, 'choose A more often than B.'],
                  [2, 'choose B more often than A.'],
-                 [1, 'choose A and B equally often.']],
+                 [3, 'choose A and B equally often.']],
         verbose_name='Which of the following is correct? On average, co-players',
         widget=widgets.RadioSelect)
 
-    ## [option 1 is correct]  ##
-
-    question3 = models.IntegerField(
-        choices=[[2, 'US$ 1'],
-                 [1, 'US$ 0'],
-                 [0, 'US$ 3']],
+    c3_payoff_ab_red = models.SmallIntegerField(
+        choices=[[1, 'US$ 1'],
+                 [2, 'US$ 0'],
+                 [3, 'US$ 3']],
         verbose_name='What is your payout if you choose A, your co-player chooses B, and the ball is red?',
         widget=widgets.RadioSelect)
 
-    ## [option 2 is correct] ##
-
-    question4 = models.IntegerField(
-        choices=[[0, 'US $ 1'],
+    c4_payoff_ab_green = models.SmallIntegerField(
+        choices=[[1, 'US $ 1'],
                  [2, 'US $ 0'],
-                 [1, 'US $ 3']],
+                 [3, 'US $ 3']],
         verbose_name='What is your payout if you choose A, your co-player chooses B, and the ball is green?',
         widget=widgets.RadioSelect)
 
-    ##[option 1 is correct]  ##
-
-    question5 = models.IntegerField(
-        choices=[[0, 'US $ 1'],
+    c5_payoff_bb_green = models.SmallIntegerField(
+        choices=[[1, 'US $ 1'],
                  [2, 'US $ 0'],
-                 [1, 'US $ 3']],
+                 [3, 'US $ 3']],
         verbose_name='What is your payout if you choose B, your co-player chooses B, and the ball is green? ',
         widget=widgets.RadioSelect)
 
-    ## [option 2 is correct] ##
 
-    question6 = models.IntegerField(
-        choices=[[0, 'The second decision is less important than the first one.'],
+    c6_decision_importance = models.SmallIntegerField(
+        choices=[[1, 'The second decision is less important than the first one.'],
                  [2, 'Both decisions are equally important.'],
-                 [1, 'The second decision is more important than the first one.']],
+                 [3, 'The second decision is more important than the first one.']],
         verbose_name='Remember that only one of the two choices counts for your payment, with equal chance. What does this mean?',
         widget=widgets.RadioSelect)
-
-    ## [option 2 is correct] ##
