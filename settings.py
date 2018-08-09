@@ -20,20 +20,10 @@ SESSION_CONFIGS = [
         'treatment': 'human'
     },
     {
-        'name': 'zero_main_1_human',
+        'name': 'zero_main_human',
         'display_name': "Decision Part 1 - Human",
         'num_demo_participants': 4,
         'app_sequence': ['zero_main_human'],
-        'treatment': 'human',
-        'decision1': True,
-    },
-    {
-        'name': 'zero_main_2_human',
-        'display_name': "Decision Part 2 - Human",
-        'num_demo_participants': 4,
-        'app_sequence': ['zero_main_human'],
-        'treatment': 'human',
-        'decision1': False,
     },
     {
         'name': 'zero_outro_human',
@@ -46,7 +36,7 @@ SESSION_CONFIGS = [
         'name': 'zero_human',
         'display_name': "Full Experiment - Human",
         'num_demo_participants': 1,
-        'app_sequence': ['zero_intro', 'zero_main_human', 'zero_main_human', 'zero_outro'],
+        'app_sequence': ['zero_intro', 'zero_main_human', 'zero_outro'],
         'treatment': 'human'
     },
     {
@@ -61,7 +51,6 @@ SESSION_CONFIGS = [
         'display_name': "Main Part - Computer",
         'num_demo_participants': 1,
         'app_sequence': ['zero_main_bot'],
-        'treatment': 'computer'
     },
     {
         'name': 'zero_main_1_bot',
@@ -69,15 +58,6 @@ SESSION_CONFIGS = [
         'num_demo_participants': 1,
         'app_sequence': ['zero_main_bot'],
         'treatment': 'computer',
-        'decision1': True,
-    },
-    {
-        'name': 'zero_main_1_bot',
-        'display_name': "Decision Part 2 - Computer",
-        'num_demo_participants': 1,
-        'app_sequence': ['zero_main_bot'],
-        'treatment': 'computer',
-        'decision1': False
     },
     {
         'name': 'zero_outro_bot',
@@ -90,7 +70,7 @@ SESSION_CONFIGS = [
         'name': 'zero_bot',
         'display_name': "Full Experiment - Computer",
         'num_demo_participants': 1,
-        'app_sequence': ['zero_intro', 'zero_main_1_bot', 'zero_main_2_bot', 'zero_outro'],
+        'app_sequence': ['zero_intro', 'zero_main_bot', 'zero_outro'],
         'treatment': 'computer'
     },
     {
