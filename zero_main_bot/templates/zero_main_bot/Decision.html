@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if player.round_number == 1 %}
+        Room 2: First Decision
+    {% else %}
+        Room 3: Second Decision
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <p>
+        {% if player.round_number == 1 %}
+            Welcome to the second room.
+        {% else %}
+            Welcome to the third room.
+        {% endif %}
+    </p>
+    <p>
+        Now, you are matched with a computer, your co-player for this round.
+    </p>
+
+    -- decision --
+
+    {% next_button %}
+
+    {% include "zero_intro/ShortInstructions.html" %}
+
+{% endblock %}

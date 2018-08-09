@@ -18,7 +18,9 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        for player in self.get_players():
+            player.treatment = self.session.config.get('treatment', 'computer')
 
 
 class Group(BaseGroup):
@@ -26,6 +28,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    treatment = models.CharField(choices=["computer", "human"], doc="treatment the participant played")
+
 
     question1 = models.IntegerField(
         choices=[[0, 'the same real person in both rooms.'],

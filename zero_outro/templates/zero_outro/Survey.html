@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block content %}
-
-    Welcome to the fourth and final room. We ask you to answer these few questions before you complete the experiment.
+    <p>
+        Welcome to the fourth and final room. We ask you to answer these few questions before you complete the experiment.
+    </p>
     {% for field in form %}
         {% formfield field %}
     {% endfor %}

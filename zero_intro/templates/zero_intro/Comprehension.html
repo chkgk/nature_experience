@@ -6,8 +6,10 @@
 {% endblock %}
 
 {% block content %}
-    Welcome to the first room. <br>
-    Here you have the chance to check whether you have properly understood the rules of the game. Please answer the following questions. <br>
+    <p>
+        Welcome to the first room. <br>
+        Here you have the chance to check whether you have properly understood the rules of the game. Please answer the following questions. <br>
+    </p>
 
     {% for field in form %}
         {% formfield field %}
@@ -15,7 +17,7 @@
     {% endfor %}
 
 
-{% next_button %}
+    {% next_button %}
 
 {% endblock %}
 

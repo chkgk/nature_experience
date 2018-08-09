@@ -3,48 +3,51 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class Decision1(Page):
+class Decision(Page):
     pass
 
-class Decision2(Page):
+class Belief_choice_chance_1(Page):
+    template_name = "zero_main_bot/Belief_choice_chance.html"
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+    def vars_for_template(self):
+        return {
+            'second_time': False
+        }
+
+class Belief_color(Page):
     pass
 
-class Belief_choice_chance_1 (Page):
+class Belief_other(Page):
     pass
 
-class Belief_color_1 (Page):
-    pass
+class Belief_choice_chance_2(Page):
+    template_name = "zero_main_bot/Belief_choice_chance.html"
 
-class Belief_other_1 (Page):
-    pass
+    def is_displayed(self):
+        return self.round_number == 1
 
-class Belief_choice_chance_2 (Page):
-    pass
-
-class Belief_color_2 (Page):
-    pass
-
-class Belief_other_2 (Page):
-    pass
+    def vars_for_template(self):
+        return {
+            'second_time': True
+        }
 
 class ResultsWaitPage(WaitPage):
-
     def after_all_players_arrive(self):
         pass
-
 
 class Results(Page):
     pass
 
 
 page_sequence = [
-    Decision1,
-    Decision2,
+    Decision,
     Belief_choice_chance_1,
-    Belief_color_1,
-    Belief_other_1,
+    Belief_color,
+    Belief_other,
+    ResultsWaitPage,
+    Results,
     Belief_choice_chance_2,
-    Belief_color_2,
-    Belief_other_2,
-
 ]

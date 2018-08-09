@@ -2,20 +2,16 @@ from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
 
+class Survey(Page):
+    form_model = 'player'
+    form_fields = []
 
-class LastPage (Page):
-    pass
-
-
-class ResultsWaitPage(WaitPage):
-
-    def after_all_players_arrive(self):
-        pass
-
-
-class Survey (Page):
-    pass
-
+class LastPage(Page):
+    def vars_for_template(self):
+        return {
+            'payoff_room': None,
+            'room_pay': None,
+        }
 
 page_sequence = [
     Survey,

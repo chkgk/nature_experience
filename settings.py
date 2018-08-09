@@ -14,72 +14,59 @@ SESSION_CONFIG_DEFAULTS = {
 SESSION_CONFIGS = [
     {
         'name': 'zero_intro_human',
-        'display_name': "Intro - Human",
+        'display_name': "Human - Intro",
         'num_demo_participants': 1,
         'app_sequence': ['zero_intro'],
         'treatment': 'human'
     },
     {
         'name': 'zero_main_human',
-        'display_name': "Decision Part 1 - Human",
+        'display_name': "Human - Main Part",
         'num_demo_participants': 4,
         'app_sequence': ['zero_main_human'],
     },
     {
         'name': 'zero_outro_human',
-        'display_name': "Outro - Human",
+        'display_name': "Human - Outro",
         'num_demo_participants': 1,
         'app_sequence': ['zero_outro'],
         'treatment': 'human'
     },
     {
         'name': 'zero_human',
-        'display_name': "Full Experiment - Human",
+        'display_name': "Human - Full Experiment",
         'num_demo_participants': 1,
         'app_sequence': ['zero_intro', 'zero_main_human', 'zero_outro'],
         'treatment': 'human'
     },
     {
         'name': 'zero_intro_bot',
-        'display_name': "Intro - Computer",
+        'display_name': "Computer - Intro",
         'num_demo_participants': 1,
         'app_sequence': ['zero_intro'],
         'treatment': 'computer'
     },
     {
         'name': 'zero_main_bot',
-        'display_name': "Main Part - Computer",
+        'display_name': "Computer - Main Part",
         'num_demo_participants': 1,
         'app_sequence': ['zero_main_bot'],
-    },
-    {
-        'name': 'zero_main_1_bot',
-        'display_name': "Decision Part 1 - Computer",
-        'num_demo_participants': 1,
-        'app_sequence': ['zero_main_bot'],
-        'treatment': 'computer',
+        'treatment': 'computer'
     },
     {
         'name': 'zero_outro_bot',
-        'display_name': "Outro - Computer",
+        'display_name': "Computer - Outro",
         'num_demo_participants': 1,
         'app_sequence': ['zero_outro'],
         'treatment': 'computer'
     },
     {
         'name': 'zero_bot',
-        'display_name': "Full Experiment - Computer",
+        'display_name': "Computer - Full Experiment",
         'num_demo_participants': 1,
         'app_sequence': ['zero_intro', 'zero_main_bot', 'zero_outro'],
         'treatment': 'computer'
-    },
-    {
-       'name': 'Game',
-       'display_name': "All Apps - New Instructions",
-       'num_demo_participants': 1,
-       'app_sequence': ['zero_intro', 'zero_main_bot', 'zero_main_human', 'zero_outro'],
-
-    },
+    }
 ]
 
 # ISO-639 code

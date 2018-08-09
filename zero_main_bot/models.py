@@ -4,21 +4,23 @@ from otree.api import (
 )
 
 
-author = 'Your name here'
+author = 'Christian König-Kersting'
 
 doc = """
-Your app description
+Computer treatment of Nature of Experience project.
 """
 
 
 class Constants(BaseConstants):
     name_in_url = 'zero_main_bot'
     players_per_group = None
-    num_rounds = 1
+    num_rounds = 2
 
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        for player in self.get_players():
+            player.treatment = self.session.config.get('treatment', 'computer')
 
 
 class Group(BaseGroup):
@@ -26,4 +28,4 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    treatment = models.CharField(choices=["computer", "human"], doc="treatment the participant played")
