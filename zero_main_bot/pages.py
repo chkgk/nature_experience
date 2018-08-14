@@ -4,10 +4,15 @@ from .models import Constants
 
 
 class Decision(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['choose_b']
+
 
 class Belief_choice_chance_1(Page):
     template_name = "zero_main_bot/Belief_choice_chance.html"
+
+    form_model = 'player'
+    form_fields = ['choice_chance_1']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -25,6 +30,9 @@ class Belief_other(Page):
 
 class Belief_choice_chance_2(Page):
     template_name = "zero_main_bot/Belief_choice_chance.html"
+
+    form_model = 'player'
+    form_fields = ['choice_chance_2']
 
     def is_displayed(self):
         return self.round_number == 1

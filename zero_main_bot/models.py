@@ -29,3 +29,11 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     treatment = models.CharField(choices=["computer", "human"], doc="treatment the participant played")
+    choose_b = models.BooleanField(
+        choices=[(False, "A"), (True, "B")],
+        widget=widgets.RadioSelectHorizontal(),
+        verbose_name="What do you choose?",
+        doc="whether the participant chose b or not"
+    )
+    choice_chance_1 = models.IntegerField(min=0, max=100, doc="choice / chance belief before results")
+    choice_chance_2 = models.IntegerField(min=0, max=100, doc="choice / chance belief after results")
