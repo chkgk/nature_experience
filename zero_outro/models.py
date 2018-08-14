@@ -55,7 +55,7 @@ class Player(BasePlayer):
     )
 
     risk = models.FloatField(
-        min=0, max=10,
+        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         verbose_name='How do you see yourself: Are you in general a person who takes risk (10) or do you try to avoid risks (0)? Please self-grade your choice (0-10).',
-        widget=widgets.Slider(attrs={'step': '1'}, show_value=True), default=5,
+        widget=widgets.RadioSelectHorizontal(),
     )
