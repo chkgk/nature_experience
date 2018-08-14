@@ -9,6 +9,8 @@ SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 1.00,
     'participation_fee': 0.50,
     'doc': "",
+    'experimenter_name': "Christian König-Kersting",
+    'experimenter_email': "christian.koenig@awi.uni-heidelberg.de"
 }
 
 SESSION_CONFIGS = [

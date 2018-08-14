@@ -29,21 +29,30 @@ class Player(BasePlayer):
 
     age = models.IntegerField(
         verbose_name='What is your age?',
-        min=13, max=125)
+        min=13, max=125
+    )
 
     gender = models.StringField(
         choices=['Male', 'Female', 'Other', 'I prefer not to tell'],
         verbose_name='What is your gender?',
-        widget=widgets.RadioSelect)
+        widget=widgets.RadioSelect
+    )
 
-    education = models.StringField(
-        choices=['Less than high school degree', 'High school degree or equivalent (e.g. GED)', 'Some college, but no degree', 'Associate degree',
-                 'Bachelor degree', 'Graduate degree'],
+    education = models.IntegerField(
+        choices=[(0, 'Less than high school degree'),
+                 (1, 'High school degree or equivalent (e.g. GED)'),
+                 (2, 'Some college, but no degree'),
+                 (3, 'Associate degree'),
+                 (4, 'Bachelor degree'),
+                 (5, 'Graduate degree')
+        ],
         verbose_name='What is the highest level of school you have completed or the highest degree you have received?',
         widget=widgets.RadioSelect)
 
     major = models.StringField(
-        verbose_name='If you had at least some college education, please tell us your major: ')
+        verbose_name='If you had at least some college education, please tell us your major: ',
+        blank=True
+    )
 
     risk = models.FloatField(
         min=0, max=10,
