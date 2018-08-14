@@ -4,7 +4,7 @@ from otree.api import (
 )
 
 
-author = 'Your name here'
+author = 'Christian König-Kersting'
 
 doc = """
 Your app description
@@ -16,6 +16,17 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
 
+    comprehension_solutions = {
+        "c1_coplayer": {
+            'human': 2,
+            'computer': 3
+        },
+        "c2_probabilities": 1,
+        "c3_payoff_ab_red": 2,
+        "c4_payoff_ab_green": 1,
+        "c5_payoff_bb_green": 2,
+        "c6_decision_importance": 2,
+    }
 
 class Subsession(BaseSubsession):
     def creating_session(self):
