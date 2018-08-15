@@ -1,7 +1,6 @@
-from otree.api import Currency as c, currency_range, SubmissionMustFail
+from otree.api import Currency as c
 from . import pages
 from ._builtin import Bot
-from .models import Constants
 
 import random
 
@@ -44,4 +43,4 @@ class PlayerBot(Bot):
 
         if self.round_number == 1:
             assert "learned the outcome" in self.html
-            yield (pages.Belief_choice_chance_2, {'choice_chance_2': random.randint(0,100)})
+            yield (pages.Belief_choice_chance_2, {'choice_chance_2': random.randint(0, 100)})

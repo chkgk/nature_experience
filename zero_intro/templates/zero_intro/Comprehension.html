@@ -31,14 +31,20 @@
         {% if c1_ok %}
             <p class="correct">Correct!</p>
         {% else %}
-            <p><span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
-            <em>
-                {% if player.treatment == 'computer' %}
-                    You are randomly matched with a co-player. Your co-player is not a human, but a computer. Your play does not affect the computer’s decision.
-                {% else %}
-                    You are randomly matched with a co-player. Your co-player is another participant in the exact same situation as you.
-                {% endif %}
-            </em></p>
+            <p>
+                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+                <em>
+                    {% if player.treatment == 'computer' %}
+                        You are randomly matched with a co-player. Your co-player is not a human, but a computer. Your play does not affect the computer’s decision.<br>
+                        In the second room, you make the first decision where you are matched with a co-player and we will ask you some questions. <br>
+                        In the third room, you make the second decision where you are matched with a different co-player.
+                    {% else %}
+                        You are randomly matched with a co-player. Your co-player is another participant in the exact same situation as you. <br>
+                        In the second room, you make the first decision where you are matched with a co-player and we will ask you some questions. <br>
+                        In the third room, you make the second decision where you are matched with a different co-player.
+                    {% endif %}
+                </em>
+            </p>
         {% endif %}
     {% endif %}
     <hr/>
@@ -52,14 +58,16 @@
         {% if c2_ok %}
             <p class="correct">Correct!</p>
         {% else %}
-            <p><span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
-            <em>
-                {% if player.treatment == 'computer' %}
-                    On average, a computer chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases.
-                {% else %}
-                    Based on previous sessions of this experiment, a co-player chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases.
-                {% endif %}
-            </em></p>
+            <p>
+                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+                <em>
+                    {% if player.treatment == 'computer' %}
+                        On average, a computer chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases.
+                    {% else %}
+                        Based on previous sessions of this experiment, a co-player chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases.
+                    {% endif %}
+                </em>
+            </p>
         {% endif %}
     {% endif %}
     <hr/>

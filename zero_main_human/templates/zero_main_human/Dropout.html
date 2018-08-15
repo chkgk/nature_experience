@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    {% if player.round_number == 1 %}
+        {% if player.timeout_decision %}
+            <p>
+                You took too long to make a decision. 
+
+            </p>
+        {% elif player.timeout_feelings %}
+            <p>
+                You took too long to make answer the questions. 
+            </p>
+        {% else %}
+            <p>The other player took too long to make a decision.</p>
+
+        {% endif %}
+
+    {% else %}
+    {# round 2 #}
+
+        {% if player.timeout_decision or player.timeout_feelings %}
+            <p>
+                You took too long to make a decision. <br>
+                Please click "next" to complete the survey and get your payout.
+            </p>
+        {% else %}
+            <p>
+                The other player took too long to make a decision.<br>
+                Please click "next" to complete the survey and get your payout.
+            </p>
+        {% endif %}
+    {% endif %}
+
+
+    {% next_button %}
+
+{% endblock %}

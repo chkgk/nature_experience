@@ -4,6 +4,7 @@ from .models import Constants
 
 
 class Decision(Page):
+    template_name = "zero_shared/Decision.html"
     form_model = 'player'
     form_fields = ['choose_b']
 
@@ -16,7 +17,7 @@ class Decision(Page):
 
 
 class Belief_choice_chance_1(Page):
-    template_name = "zero_main_bot/Belief_choice_chance.html"
+    template_name = "zero_shared/Belief_choice_chance.html"
 
     form_model = 'player'
     form_fields = ['choice_chance_1']
@@ -30,15 +31,28 @@ class Belief_choice_chance_1(Page):
         }
 
 class Belief_color(Page):
+    template_name = "zero_shared/Belief_color.html"
     form_model = 'player'
     form_fields = ['green_red']
 
 class Belief_other(Page):
+    template_name = "zero_shared/Belief_other.html"
     form_model = 'player'
     form_fields = ['a_or_b']
 
+
+class Results(Page):
+    template_name = "zero_shared/Results.html"
+    def vars_for_template(self):
+        return {
+            'own_choice': "B" if self.player.choose_b else "A",
+            'other_choice': "B" if self.player.other_choose_b else "A",
+            'ball_color': "green" if self.player.ball_green else "red",
+        }
+
+
 class Belief_choice_chance_2(Page):
-    template_name = "zero_main_bot/Belief_choice_chance.html"
+    template_name = "zero_shared/Belief_choice_chance.html"
 
     form_model = 'player'
     form_fields = ['choice_chance_2']
@@ -50,15 +64,6 @@ class Belief_choice_chance_2(Page):
         return {
             'second_time': True
         }
-
-class Results(Page):
-    def vars_for_template(self):
-        return {
-            'own_choice': "B" if self.player.choose_b else "A",
-            'other_choice': "B" if self.player.other_choose_b else "A",
-            'ball_color': "green" if self.player.ball_green else "red",
-        }
-
 
 page_sequence = [
     Decision,

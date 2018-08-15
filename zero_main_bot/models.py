@@ -1,6 +1,6 @@
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
-    Currency as c, currency_range
+    Currency as c
 )
 
 import random
@@ -39,7 +39,7 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     def creating_session(self):
         for player in self.get_players():
-            player.treatment = self.session.config.get('treatment', 'computer')
+            player.treatment = 'computer'
             player.relevant_round = random.randint(1, 2)
 
 

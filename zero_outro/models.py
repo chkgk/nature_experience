@@ -1,8 +1,5 @@
 from otree.api import (
-    models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
-    Currency as c, currency_range
-)
-import random
+    models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer)
 
 author = 'Christian König-Kersting'
 
@@ -26,8 +23,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-
-
     # survey
     age = models.IntegerField(
         verbose_name='What is your age?',
@@ -41,12 +36,13 @@ class Player(BasePlayer):
     )
 
     education = models.IntegerField(
-        choices=[(0, 'Less than high school degree'),
-                 (1, 'High school degree or equivalent (e.g. GED)'),
-                 (2, 'Some college, but no degree'),
-                 (3, 'Associate degree'),
-                 (4, 'Bachelor degree'),
-                 (5, 'Graduate degree')
+        choices=[
+            (0, 'Less than high school degree'),
+            (1, 'High school degree or equivalent (e.g. GED)'),
+            (2, 'Some college, but no degree'),
+            (3, 'Associate degree'),
+            (4, 'Bachelor degree'),
+            (5, 'Graduate degree')
         ],
         verbose_name='What is the highest level of school you have completed or the highest degree you have received?',
         widget=widgets.RadioSelect)
@@ -58,6 +54,7 @@ class Player(BasePlayer):
 
     risk = models.FloatField(
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        verbose_name='How do you see yourself: Are you in general a person who takes risk (10) or do you try to avoid risks (0)? Please self-grade your choice (0-10).',
+        verbose_name='How do you see yourself: Are you in general a person who takes risk (10) or do you try to avoid \
+            risks (0)? Please self-grade your choice (0-10).',
         widget=widgets.RadioSelectHorizontal(),
     )
