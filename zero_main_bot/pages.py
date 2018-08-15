@@ -7,6 +7,13 @@ class Decision(Page):
     form_model = 'player'
     form_fields = ['choose_b']
 
+    def before_next_page(self):
+        self.player.draw_ball()
+        self.player.get_coplayer_choice()
+        self.player.calculate_round_payoff()
+        if self.round_number == Constants.num_rounds:
+            self.player.set_final_payoff()
+
 
 class Belief_choice_chance_1(Page):
     template_name = "zero_main_bot/Belief_choice_chance.html"
@@ -23,10 +30,12 @@ class Belief_choice_chance_1(Page):
         }
 
 class Belief_color(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['green_red']
 
 class Belief_other(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['a_or_b']
 
 class Belief_choice_chance_2(Page):
     template_name = "zero_main_bot/Belief_choice_chance.html"
@@ -42,12 +51,13 @@ class Belief_choice_chance_2(Page):
             'second_time': True
         }
 
-class ResultsWaitPage(WaitPage):
-    def after_all_players_arrive(self):
-        pass
-
 class Results(Page):
-    pass
+    def vars_for_template(self):
+        return {
+            'own_choice': "B" if self.player.choose_b else "A",
+            'other_choice': "B" if self.player.other_choose_b else "A",
+            'ball_color': "green" if self.player.ball_green else "red",
+        }
 
 
 page_sequence = [
@@ -55,7 +65,6 @@ page_sequence = [
     Belief_choice_chance_1,
     Belief_color,
     Belief_other,
-    ResultsWaitPage,
     Results,
     Belief_choice_chance_2,
 ]

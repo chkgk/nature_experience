@@ -7,11 +7,11 @@
 
 {% block content %}
     <p>
-        You chose <b>{A/B}</b>. The other participant chose <b>{A/B}</b>.<br>
-        The ball drawn from the urn is <b>{green/red}</b>.
+        You chose <b>{{ own_choice }}</b>. The other participant chose <b>{{ other_choice }}</b>.<br>
+        The ball drawn from the urn is <b>{{ ball_color }}</b>.
     </p>
     <p>
-        As a result you earned <b>{payoff}</b> if this room is selected for payment.
+        As a result you earned <b>{{ player.room_payoff }}</b> if this room is selected for payment.
     </p>
     {% next_button %}
 {% endblock %}

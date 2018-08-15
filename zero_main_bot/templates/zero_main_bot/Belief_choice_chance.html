@@ -11,20 +11,22 @@
 {% endblock %}
 
 {% block content %}
-    {% if second_time %}
+    <div align="center">
+        {% if second_time %}
+            <p>
+                Now that you have learned the outcome, please answer this question again.
+            </p>
+        {% endif %}
         <p>
-            Now that you have learned the outcome, please answer this question again.
+            While you made your decision, a red or green ball was drawn and your co-player chose either option A or option B.
         </p>
-    {% endif %}
-    <p>
-        While you made your decision, a red or green ball was drawn and your co-player chose either option A or option B.
-    </p>
-    <p>
-        What is your gut feeling - to what extent do you think the outcome of this game is due to:
-    </p>
-    <p>
-        <b>chance</b> or due to <b>your and your co-player's decision</b>?
-    </p>
+        <p>
+            What is your gut feeling - to what extent do you think the outcome of this game is due to:
+        </p>
+        <p>
+            <b>chance</b> or due to <b>your and your co-player's decision</b>?
+        </p>
+    </div>
 
     <table cellspacing="0" class="slider-layout" width="%">
         <tr>

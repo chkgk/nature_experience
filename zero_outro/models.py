@@ -2,12 +2,12 @@ from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency as c, currency_range
 )
+import random
 
-
-author = 'Your name here'
+author = 'Christian König-Kersting'
 
 doc = """
-Your app description
+Final part of nature of experience experiment.
 """
 
 
@@ -27,6 +27,8 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
 
+
+    # survey
     age = models.IntegerField(
         verbose_name='What is your age?',
         min=13, max=125
