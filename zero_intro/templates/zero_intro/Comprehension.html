@@ -1,0 +1,180 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Room 1: Quiz
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        .correct {
+            color: #339966;
+        }
+        .incorrect {
+            color: #ff0000;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <p>
+        Welcome to the first room. <br>
+        Here you have the chance to check whether you have properly understood the rules of the game. Please answer the following questions. <br>
+    </p>
+
+    {{ form.c1_coplayer.label }}
+    {{ form.c1_coplayer }}
+    <div class="form-control-errors">
+        {{ form.c1_coplayer.errors }}
+    </div>
+    {% if page == 2 %}
+        {% if c1_ok %}
+            <p class="correct">Correct!</p>
+        {% else %}
+            <p>
+                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+                <em>
+                    {% if player.treatment == 'computer' %}
+                        You are randomly matched with a co-player. Your co-player is not a human, but a computer. Your play does not affect the computer’s decision.<br>
+                        In the second room, you make the first decision where you are matched with a co-player and we will ask you some questions. <br>
+                        In the third room, you make the second decision where you are matched with a different co-player.
+                    {% else %}
+                        You are randomly matched with a co-player. Your co-player is another participant in the exact same situation as you. <br>
+                        In the second room, you make the first decision where you are matched with a co-player and we will ask you some questions. <br>
+                        In the third room, you make the second decision where you are matched with a different co-player.
+                    {% endif %}
+                </em>
+            </p>
+        {% endif %}
+    {% endif %}
+    <hr/>
+
+    {{ form.c2_probabilities.label }}
+    {{ form.c2_probabilities }}
+    <div class="form-control-errors">
+        {{ form.c2_probabilities.errors }}
+    </div>
+    {% if page == 2 %}
+        {% if c2_ok %}
+            <p class="correct">Correct!</p>
+        {% else %}
+            <p>
+                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+                <em>
+                    {% if player.treatment == 'computer' %}
+                        On average, a computer chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases.
+                    {% else %}
+                        Based on previous sessions of this experiment, a co-player chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases.
+                    {% endif %}
+                </em>
+            </p>
+        {% endif %}
+    {% endif %}
+    <hr/>
+
+    {{ form.c3_payoff_ab_red.label }}
+    {{ form.c3_payoff_ab_red }}
+    <div class="form-control-errors">
+        {{ form.c3_payoff_ab_red.errors }}
+    </div>
+    {% if page == 2 %}
+        {% if c3_ok %}
+            <p class="correct">Correct!</p>
+        {% else %}
+            <p><span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+            <em>
+                <ul>
+                    <li>you choose A, and your co-player chooses A: You receive US$ 1. Your co-player receives US$ 1.</li>
+                    <li>you choose A, and your co-player chooses B: You receive US$ 1. Your co-player receives US$ 3.</li>
+                    <li>you choose B, and your co-player chooses A: You receive US$ 3. Your co-player receives US$ 1.</li>
+                    <li>you choose B, and your co-player chooses B: You receive nothing (US$ 0). Your co-player receives nothing (US$ 0).</li>
+                </ul>
+                If a red ball has been drawn, you receive nothing (US$ 0).
+            </em></p>
+        {% endif %}
+    {% endif %}
+    <hr/>
+
+    {{ form.c4_payoff_ab_green.label }}
+    {{ form.c4_payoff_ab_green }}
+    <div class="form-control-errors">
+        {{ form.c4_payoff_ab_green.errors }}
+    </div>
+    {% if page == 2 %}
+        {% if c4_ok %}
+            <p class="correct">Correct!</p>
+        {% else %}
+            <p><span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+            <em>
+                <ul>
+                    <li>you choose A, and your co-player chooses A: You receive US$ 1. Your co-player receives US$ 1.</li>
+                    <li>you choose A, and your co-player chooses B: You receive US$ 1. Your co-player receives US$ 3.</li>
+                    <li>you choose B, and your co-player chooses A: You receive US$ 3. Your co-player receives US$ 1.</li>
+                    <li>you choose B, and your co-player chooses B: You receive nothing (US$ 0). Your co-player receives nothing (US$ 0).</li>
+                </ul>
+                If a red ball has been drawn, you receive nothing (US$ 0).
+            </em></p>
+        {% endif %}
+    {% endif %}
+    <hr/>
+
+    {{ form.c5_payoff_bb_green.label }}
+    {{ form.c5_payoff_bb_green }}
+    <div class="form-control-errors">
+        {{ form.c5_payoff_bb_green.errors }}
+    </div>
+    {% if page == 2 %}
+        {% if c5_ok %}
+            <p class="correct">Correct!</p>
+        {% else %}
+            <p><span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+            <em>
+                <ul>
+                    <li>you choose A, and your co-player chooses A: You receive US$ 1. Your co-player receives US$ 1.</li>
+                    <li>you choose A, and your co-player chooses B: You receive US$ 1. Your co-player receives US$ 3.</li>
+                    <li>you choose B, and your co-player chooses A: You receive US$ 3. Your co-player receives US$ 1.</li>
+                    <li>you choose B, and your co-player chooses B: You receive nothing (US$ 0). Your co-player receives nothing (US$ 0).</li>
+                </ul>
+                If a red ball has been drawn, you receive nothing (US$ 0).
+            </em></p>
+        {% endif %}
+    {% endif %}
+    <hr/>
+
+    {{ form.c6_decision_importance.label }}
+    {{ form.c6_decision_importance }}
+    <div class="form-control-errors">
+        {{ form.c6_decision_importance.errors }}
+    </div>
+    {% if page == 2 %}
+        {% if c6_ok %}
+            <p class="correct">Correct!</p>
+        {% else %}
+            <p><span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+            <em>
+                Note that only one of the two decisions from rooms 2 and 3 will be selected for payment at random. As it is unknown which of the two decisions count, it is important to pay equally close attention to both.
+            </em></p>
+        {% endif %}
+    {% endif %}
+    <hr/>
+
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        var page = {{ page|json }};
+        var c1_ok = {{ c1_ok|json }};
+        var c2_ok = {{ c2_ok|json }};
+        var c3_ok = {{ c3_ok|json }};
+        var c4_ok = {{ c4_ok|json }};
+        var c5_ok = {{ c5_ok|json }};
+        var c6_ok = {{ c6_ok|json }};
+
+        // if not all ok, relabel next button
+        if (!(c1_ok && c2_ok && c3_ok && c4_ok && c5_ok && c6_ok)) {
+            $(".otree-btn-next").html('check answers');
+        }
+    </script>
+{% endblock %}

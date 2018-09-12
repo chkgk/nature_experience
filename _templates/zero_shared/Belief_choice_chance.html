@@ -1,0 +1,69 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Questions
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static "global/bootstrap-slider.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "global/agent.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div align="center">
+        {% if second_time %}
+            <p>
+                Now that you have learned the outcome, please answer this question again.
+            </p>
+        {% endif %}
+        <p>
+            While you made your decision, a red or green ball was drawn and your co-player chose either option A or option B.
+        </p>
+        <p>
+            What is your gut feeling - to what extent do you think the outcome of this game is due to:
+        </p>
+        <p>
+            <b>chance</b> or due to <b>your and your co-player's decision</b>?
+        </p>
+    </div>
+
+    <table cellspacing="0" class="slider-layout" width="%">
+        <tr>
+            <td align="right" width="250">
+                chance
+            </td>
+            <td align="center" width="410">
+                {% if second_time %}
+                    <input id="id_choice_chance_2" name="choice_chance_2" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+                {% else %}
+                    <input id="id_choice_chance_1" name="choice_chance_1" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+                {% endif %}
+            </td>
+            <td align="left" width="250">
+                your and your co-player's choices
+            </td>
+        </tr>
+    </table>
+
+    {% next_button %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "global/bootstrap-slider.min.js" %}"></script>
+    <script type="text/javascript">
+        {% if second_time %}
+            $("#id_choice_chance_2").slider();
+        {% else %}
+            $("#id_choice_chance_1").slider();
+        {% endif %}
+        $('.otree-btn-next').hide();
+        $('.slider-handle').hide();
+        $('.slider').on('mousedown', function (event) {
+            $(this).find('.slider-handle:not(.hide)').show();
+            $('.otree-btn-next').show();
+        });
+    </script>
+{% endblock %}
+
+

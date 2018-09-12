@@ -1,0 +1,84 @@
+{% extends 'otree_mturk_utils/GenericExtendedWaitPage.html' %}
+{% load staticfiles otree_tags %}
+{% block title %}Please wait!{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static "otree_mturk_utils/flipclock.css" %}"/>
+    <style>
+        #left_to_wait {
+            font-weight: bold;
+        }
+        span.flip-clock-label {
+            display: none;
+        }
+
+        #finish_study {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="your-clock"></div>
+        <div>Waiting for one more particpant...</div>
+
+    <div id="otree-timeout-warning" class="alert alert-warning" style="display:block;">
+        <p>You can finish the study if nobody arrives in:
+            <span class="glyphicon glyphicon-time"></span>
+            <strong><span id="otree-timer__time-left"></span></strong>
+        </p>
+    </div>
+
+    <form action="" method="post" role="form" class="form">
+        {% csrf_token %}
+        <div id='finish_study' class="alert alert-warning">
+            <p>You have waited for more than two minutes and may leave the study.<br/> If you do, you will still be compensated for your participation.</p>
+            <button class="btn btn-primary"
+                    name="endofgame" value="{{ player.pk }}">
+                Leave the study
+            </button>
+        </div>
+        <br>
+    </form>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "otree_mturk_utils/flipclock.js" %}"></script>
+    {% include 'otree_mturk_utils/waiting_page_channel.js.html' %}
+    <script src="{% static 'otree_mturk_utils/jquery.countdown.min.js' %}"></script>
+    <script>
+        var clock;
+        $(document).ready(function () {
+            clock = $('.your-clock').FlipClock({
+                clockFace: 'MinuteCounter'
+            });
+            clock.setTime({{time_passed}});
+        });
+        {#        console.log(clock.face);#}
+    </script>
+    <script type="text/javascript">
+        {#        $('div#otree-timeout').show();#}
+        var currentDate = new Date();
+        var milliseconds = Math.floor({{ time_left|json }} * 1000
+        )
+        ;
+        $('div#otree-timeout-warning').show();
+        $('span#otree-timer__time-left').countdown(currentDate.valueOf() + milliseconds)
+            .on('update.countdown', function (event) {
+                // %-N is "Total count of minutes till the end, non-padded"
+                // %S is seconds left
+                var format = '%-N:%S';
+                var remainingTime = event.strftime(format);
+                $(this).html(remainingTime);
+                if (event.strftime('%-M') > 30) {
+                    // Do not show if max waiting time is above 30 minutes
+                    $('div#otree-timeout-warning').filter(":visible").hide(duration = 0);
+                }
+                ;
+            })
+            .on('finish.countdown', function (event) {
+                $('div#otree-timeout-warning').hide(duration = 0);
+                $('#finish_study').show();
+            });
+    </script>
+
+{% endblock %}

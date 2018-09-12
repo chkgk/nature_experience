@@ -1,24 +1,26 @@
-from otree.api import Currency as c, currency_range
-from ._builtin import Page, WaitPage
-from .models import Constants
+from otree_mturk_utils.views import CustomMturkPage
 
 
-class MyPage(Page):
-    pass
+class Survey(CustomMturkPage):
+    form_model = 'player'
+    form_fields = ['age', 'gender', 'education', 'major', 'risk']
+
+    def error_message(self, values):
+        if values["education"] >= 2 and (values["major"] == " " or values["major"] is None):
+            return "Please indicate your major."
 
 
-class ResultsWaitPage(WaitPage):
-
-    def after_all_players_arrive(self):
-        pass
-
-
-class Results(Page):
-    pass
+class LastPage(CustomMturkPage):
+    def vars_for_template(self):
+        return {
+            'payment_room': self.player.participant.vars.get('payment_room', None),
+            'payment': self.player.participant.vars.get('payment', None),
+            'experimenter_name': self.session.config.get('experimenter_name', 'Florian Diekert'),
+            'experimenter_email': self.session.config.get('experimenter_email', 'natcoop@awi.uni-heidelberg.de')
+        }
 
 
 page_sequence = [
-    MyPage,
-    ResultsWaitPage,
-    Results
+    Survey,
+    LastPage
 ]
