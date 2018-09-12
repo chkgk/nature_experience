@@ -9,6 +9,7 @@ class Decision(Page):
     form_fields = ['choose_b']
 
     def before_next_page(self):
+        self.player.determine_implementation()
         self.player.draw_ball()
         self.player.get_coplayer_choice()
         self.player.calculate_round_payoff()
@@ -46,6 +47,7 @@ class Results(Page):
     def vars_for_template(self):
         return {
             'own_choice': "B" if self.player.choose_b else "A",
+            'own_implementation': "B" if self.player.implement_b else "A",
             'other_choice': "B" if self.player.other_choose_b else "A",
             'ball_color': "green" if self.player.ball_green else "red",
         }

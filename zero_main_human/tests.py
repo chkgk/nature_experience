@@ -18,16 +18,16 @@ class PlayerBot(Bot):
         if not self.group.ball_green:
             assert self.player.room_payoff == c(0)
         else:
-            if self.player.choose_b and self.player.other_choose_b:
+            if self.player.implement_b and self.player.other_choose_b:
                 assert self.player.room_payoff == c(0)
 
-            if self.player.choose_b and not self.player.other_choose_b:
+            if self.player.implement_b and not self.player.other_choose_b:
                 assert self.player.room_payoff == c(3)
 
-            if not self.player.choose_b and self.player.other_choose_b:
+            if not self.player.implement_b and self.player.other_choose_b:
                 assert self.player.room_payoff == c(1)
 
-            if not self.player.choose_b and not self.player.other_choose_b:
+            if not self.player.implement_b and not self.player.other_choose_b:
                 assert self.player.room_payoff == c(1)
 
         if self.round_number == 2:

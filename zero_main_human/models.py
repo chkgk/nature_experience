@@ -20,6 +20,8 @@ class Constants(BaseConstants):
     pi = 0.2
     ball_green_probability = 1 - pi
 
+    choice_implementation_probability = 0.6
+
     # timeouts
     decision_timeout = 20 # 120s
     feelings_timeout = 20 # 60s
@@ -62,6 +64,7 @@ class Group(BaseGroup):
 
     def get_coplayer_choices(self):
         for player in self.get_players():
+            player.determine_implementation()
             player.get_coplayer_choice()
 
     def calculate_round_payoffs(self):
@@ -87,6 +90,9 @@ class Player(BasePlayer):
     other_choose_b = models.BooleanField(doc="whether the co-player chose b or not")
     partner = models.PositiveSmallIntegerField(doc="id in subsession of matched player")
 
+    # implementation
+    implement_b = models.BooleanField(doc="whether b was actually implemented or not")
+
     # beliefs
     choice_chance_1 = models.IntegerField(min=0, max=100, doc="belief choice / chance before results")
     choice_chance_2 = models.IntegerField(min=0, max=100, doc="belief choice / chance after results")
@@ -102,6 +108,12 @@ class Player(BasePlayer):
     timeout_feelings = models.BooleanField(initial=False, doc="whether player timed out answering the feelings questions")
 
     # methods
+    def determine_implementation(self):
+        if random.random() <= Constants.choice_implementation_probability:
+            self.implement_b = self.choose_b
+        else:
+            self.implement_b = not self.choose_b
+
     def set_partner(self):
         self.partner = self.get_others_in_group()[0].id_in_subsession
 
@@ -110,7 +122,7 @@ class Player(BasePlayer):
 
     def calculate_round_payoff(self):
         if self.group.ball_green:
-            self.room_payoff = c(Constants.payoff_matrix[self.choose_b][self.other_choose_b])
+            self.room_payoff = c(Constants.payoff_matrix[self.implement_b][self.other_choose_b])
         else:
             self.room_payoff = c(0)
 

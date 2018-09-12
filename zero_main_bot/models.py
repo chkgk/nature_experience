@@ -21,6 +21,8 @@ class Constants(BaseConstants):
     computer_b_probability = 0.4
     ball_green_probability = 1 - pi
 
+    choice_implementation_probability = 0.6
+
     # note: False = red, True = green
     payoff_matrix = {
         False:
@@ -63,6 +65,9 @@ class Player(BasePlayer):
     )
     other_choose_b = models.BooleanField(doc="whether the co-player chose b or not")
 
+    # implementation
+    implement_b = models.BooleanField(doc="whether b was actually implemented or not")
+
     # beliefs
     choice_chance_1 = models.IntegerField(min=0, max=100, doc="belief choice / chance before results")
     choice_chance_2 = models.IntegerField(min=0, max=100, doc="belief choice / chance after results")
@@ -74,6 +79,12 @@ class Player(BasePlayer):
     room_payoff = models.CurrencyField(doc="payoff earned in this room if selected for payment")
 
     # methods
+    def determine_implementation(self):
+        if random.random() <= Constants.choice_implementation_probability:
+            self.implement_b = self.choose_b
+        else:
+            self.implement_b = not self.choose_b
+
     def get_coplayer_choice(self):
         self.other_choose_b = random.random() <= Constants.computer_b_probability
 
@@ -82,7 +93,7 @@ class Player(BasePlayer):
 
     def calculate_round_payoff(self):
         if self.ball_green:
-            self.room_payoff = c(Constants.payoff_matrix[self.choose_b][self.other_choose_b])
+            self.room_payoff = c(Constants.payoff_matrix[self.implement_b][self.other_choose_b])
         else:
             self.room_payoff = c(0)
 

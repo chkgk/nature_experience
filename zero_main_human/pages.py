@@ -126,6 +126,7 @@ class Results(CustomMturkPage):
     def vars_for_template(self):
         return {
             'own_choice': "B" if self.player.choose_b else "A",
+            'own_implementation': "B" if self.player.implement_b else "A",
             'other_choice': "B" if self.player.other_choose_b else "A",
             'ball_color': "green" if self.group.ball_green else "red",
         }

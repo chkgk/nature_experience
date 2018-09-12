@@ -37,7 +37,7 @@ SESSION_CONFIGS = [
     {
         'name': 'zero_human',
         'display_name': "Human - Full Experiment",
-        'num_demo_participants': 1,
+        'num_demo_participants': 4,
         'app_sequence': ['zero_intro', 'zero_main_human', 'zero_outro'],
         'treatment': 'human'
     },
