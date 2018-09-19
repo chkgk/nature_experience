@@ -71,6 +71,48 @@ SESSION_CONFIGS = [
     }
 ]
 
+mturk_hit_settings = {
+    'keywords': ['bonus', 'study', 'decision making'],
+    'title': 'Research in decision making',
+    'description': 'Participate in a game and a short survey. Please note that the task is to be completed within 10-15 minutes as you are matched with a co-player.',
+    'frame_height': 500,
+    'preview_template': 'zero_intro/MTurkPreview.html',
+    'minutes_allotted_per_assignment': 25,
+    'expiration_hours': 7 * 24,  # 7 days
+    # PRODUCTION ONLY
+    # this would grant florians qualification, if we run it through his account.
+    # 'grant_qualification_id': '3DA2M59FDW8FXK3OTJT76I16UG0RXG',# to prevent retakes
+
+    # alternatively, if we use Christian's account:
+    #'grant_qualification_id': '3X4G950TG9JM27SOMLGT6VJ1IU8P1C',
+    # SANDBOX ONLY
+
+    # 'grant_qualification_id': '3TW6VZEPPW5UL7N9GRPX9CW4P7VXPS',# to prevent retakes
+    'qualification_requirements': [
+        # # PRODUCTION ONLY
+        # {
+        #     'QualificationTypeId': "00000000000000000071",
+        #     'Comparator': "EqualTo",
+        #     'LocaleValues': [{'Country': "US"}]
+        # },
+        # # qualification granted by Florian's Experiments
+        # {
+        #     'QualificationTypeId': "3DA2M59FDW8FXK3OTJT76I16UG0RXG",
+        #     'Comparator': "DoesNotExist",
+        # },
+        # # qualification granted by Christian's runs
+        # {
+        #     'QualificationTypeId': "3X4G950TG9JM27SOMLGT6VJ1IU8P1C",
+        #     'Comparator': "DoesNotExist",
+        # }
+        # SANDBOX ONLY
+        # {
+        #    'QualificationTypeId': "3TW6VZEPPW5UL7N9GRPX9CW4P7VXPS",
+        #    'Comparator': "DoesNotExist",
+        # }
+    ]
+}
+
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'en'
@@ -101,7 +143,7 @@ ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 # Consider '', None, and '0' to be empty/false
 DEBUG = (environ.get('OTREE_PRODUCTION') in {None, '', '0'})
 
-DEMO_PAGE_INTRO_HTML = """ """
+DEMO_PAGE_INTRO_HTML = """Choose an option on the right to test individual parts or the full treatment conditions."""
 
 # don't share this with anybody.
 SECRET_KEY = '(js*7-e9%&_d*0j3%0jd&m$_)qvppc0tp_%7pzhqq-mt8=k6k@'
