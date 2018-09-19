@@ -24,7 +24,7 @@ class Constants(BaseConstants):
     prob_switch_b_to_a = 0.01
 
     # timeouts
-    decision_timeout = 120 # 120s
+    decision_timeout = 20 # 120s
     feelings_timeout = 60 # 60s
 
     # timeout banner is shown X seconds before timer runs out:
@@ -137,3 +137,7 @@ class Player(BasePlayer):
         self.payoff = self.in_round(self.relevant_round).room_payoff
         self.participant.vars['payment'] = self.payoff
         self.participant.vars['payment_room'] = self.relevant_round
+
+    def end_game(self):
+        self.participant.vars['go_to_the_end'] = True
+        self.participant.vars['game_ended'] = True

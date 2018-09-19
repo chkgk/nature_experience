@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    End of Experiment
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        You took too long to make a decision. The experiment will end now.
+    </p>
+
+    {% next_button %}
+
+{% endblock %}

@@ -42,6 +42,7 @@ class Decision(CustomMturkPage):
     def before_next_page(self):
         if self.timeout_happened:
             self.player.timeout_decision = True
+            self.player.end_game()
             self.group.dropout = True
         else:
             self.player.set_partner()
@@ -62,6 +63,7 @@ class Belief_choice_chance_1(CustomMturkPage):
     def before_next_page(self):
         if self.timeout_happened:
             self.player.timeout_feelings = True
+            self.player.end_game()
 
     def vars_for_template(self):
         return {
@@ -83,6 +85,7 @@ class Belief_color(CustomMturkPage):
     def before_next_page(self):
         if self.timeout_happened:
             self.player.timeout_feelings = True
+            self.player.end_game()
 
 
 class Belief_other(CustomMturkPage):
@@ -99,6 +102,7 @@ class Belief_other(CustomMturkPage):
     def before_next_page(self):
         if self.timeout_happened:
             self.player.timeout_feelings = True
+            self.player.end_game()
 
 
 class DecisionWaitPage(WaitPage):
@@ -131,9 +135,12 @@ class Results(CustomMturkPage):
             'ball_color': "green" if self.group.ball_green else "red",
         }
 
-class Dropout(CustomMturkPage):
+class DropoutOther(CustomMturkPage):
     def is_displayed(self):
-        return self.group.dropout or self.player.timeout_decision or self.player.timeout_feelings
+        return self.group.dropout
+
+    def before_next_page(self):
+        self.player.end_game()
 
 
 class Belief_choice_chance_2(CustomMturkPage):
@@ -148,11 +155,29 @@ class Belief_choice_chance_2(CustomMturkPage):
     def before_next_page(self):
         if self.timeout_happened:
             self.player.timeout_feelings = True
+            self.player.end_game()
 
     def vars_for_template(self):
         return {
             'second_time': True
         }
+
+class EndWaitExit(Page):
+    def is_displayed(self):
+        return self.player.participant.vars.get('go_to_the_end', False) \
+               and self.round_number == Constants.num_rounds \
+               and not self.player.participant.vars.get('game_ended', False)
+
+class DropoutExit(Page):
+    def is_displayed(self):
+        return self.player.participant.vars.get('go_to_the_end', False) \
+               and self.round_number == Constants.num_rounds \
+               and self.player.participant.vars.get('game_ended', False) \
+               and (
+                    self.player.in_round(1).timeout_decision or self.player.in_round(1).timeout_feelings or
+                    self.player.in_round(2).timeout_decision or self.player.in_round(2).timeout_feelings
+               )
+
 
 
 page_sequence = [
@@ -163,6 +188,8 @@ page_sequence = [
     Belief_other,
     DecisionWaitPage,
     Results,
-    Dropout,
+    DropoutOther,
     Belief_choice_chance_2,
+    EndWaitExit,
+    DropoutExit,
 ]

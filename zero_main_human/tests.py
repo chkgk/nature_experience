@@ -1,4 +1,4 @@
-from otree.api import Currency as c, currency_range
+from otree.api import Currency as c, currency_range, Submission, SubmissionMustFail
 from . import pages
 from ._builtin import Bot
 from .models import Constants
@@ -6,15 +6,11 @@ from .models import Constants
 import random
 
 class PlayerBot(Bot):
-    def play_round(self):
-        yield (pages.Decision, {'choose_b': random.choice([True, False])})
 
-        if self.round_number == 1:
-            yield (pages.Belief_choice_chance_1, {'choice_chance_1': random.randint(0, 100)})
+    # cases = ['no_timeouts', 'decision_timeout', 'feelings_timeout']
+    # cases = ['feelings_timeout']
 
-        yield (pages.Belief_color, {'green_red': random.randint(0, 100)})
-        yield (pages.Belief_other, {'a_or_b': random.randint(0, 100)})
-
+    def check_room_payoffs(self):
         if not self.group.ball_green:
             assert self.player.room_payoff == c(0)
         else:
@@ -30,12 +26,82 @@ class PlayerBot(Bot):
             if not self.player.implement_b and not self.player.other_choose_b:
                 assert self.player.room_payoff == c(1)
 
-        if self.round_number == 2:
-            assert self.player.payoff == self.player.in_round(self.player.relevant_round).room_payoff
+
+    def play_round(self):
+        if self.case == 'no_timeouts':
+            yield (pages.Decision, {'choose_b': random.choice([True, False])})
+
+            if self.round_number == 1:
+                yield (pages.Belief_choice_chance_1, {'choice_chance_1': random.randint(0, 100)})
+
+            yield (pages.Belief_color, {'green_red': random.randint(0, 100)})
+            yield (pages.Belief_other, {'a_or_b': random.randint(0, 100)})
+
+            self.check_room_payoffs()
+
+            if self.round_number == 2:
+                assert self.player.payoff == self.player.in_round(self.player.relevant_round).room_payoff
 
 
-        yield (pages.Results)
+            yield (pages.Results)
 
-        if self.round_number == 1:
-            assert "learned the outcome" in self.html
-            yield (pages.Belief_choice_chance_2, {'choice_chance_2': random.randint(0, 100)})
+            if self.round_number == 1:
+                assert "learned the outcome" in self.html
+                yield (pages.Belief_choice_chance_2, {'choice_chance_2': random.randint(0, 100)})
+
+        if self.case == 'decision_timeout':
+            if self.round_number == 1:
+                if self.player.id_in_group == 1:
+                    yield Submission(pages.Decision, {}, timeout_happened=True)
+                else:
+                    yield (pages.Decision, {'choose_b': random.choice([True, False])})
+
+                    yield (pages.Belief_choice_chance_1, {'choice_chance_1': random.randint(0, 100)})
+
+                    yield (pages.Belief_color, {'green_red': random.randint(0, 100)})
+                    yield (pages.Belief_other, {'a_or_b': random.randint(0, 100)})
+
+                    yield(pages.DropoutOther)
+
+            if self.round_number == 2:
+                if self.player.in_round(1).id_in_group == 1:
+                    assert "You took too long" in self.html
+                    yield (pages.DropoutExit)
+
+                if self.player.in_round(1).id_in_group != 1:
+                    # this guy goes straight to last page.
+                    pass
+
+        if self.case == 'feelings_timeout':
+            if self.round_number == 1:
+                yield (pages.Decision, {'choose_b': random.choice([True, False])})
+
+                if self.player.id_in_group == 1:
+                    yield Submission(pages.Belief_choice_chance_1, {}, timeout_happened=True)
+                else:
+                    yield (pages.Belief_choice_chance_1, {'choice_chance_1': random.randint(0, 100)})
+
+                    yield (pages.Belief_color, {'green_red': random.randint(0, 100)})
+                    yield (pages.Belief_other, {'a_or_b': random.randint(0, 100)})
+
+                    self.check_room_payoffs()
+
+                    yield(pages.Results)
+                    yield (pages.Belief_choice_chance_2, {'choice_chance_2': random.randint(0, 100)})
+
+            if self.round_number == 2:
+                if self.player.in_round(1).id_in_group == 1:
+                    assert "You took too long" in self.html
+                    yield (pages.DropoutExit)
+
+                if self.player.in_round(1).id_in_group != 1:
+                    yield (pages.Decision, {'choose_b': random.choice([True, False])})
+
+                    yield (pages.Belief_color, {'green_red': random.randint(0, 100)})
+                    yield (pages.Belief_other, {'a_or_b': random.randint(0, 100)})
+
+                    self.check_room_payoffs()
+
+                    assert self.player.payoff == self.player.in_round(self.player.relevant_round).room_payoff
+
+                    yield (pages.Results)

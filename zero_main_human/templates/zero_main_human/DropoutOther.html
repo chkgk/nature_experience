@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    {% if player.round_number == 1 %}
+        <p>
+            The other player took too long to make a decision.<br>
+            Please click "next" to complete the survey and get your payout.
+        </p>
+    {% else %}
+    {# round 2 #}
+        <p>
+            The other player took too long to make a decision.<br>
+            Please click "next" to complete the survey and get your payout.
+        </p>
+    {% endif %}
+
+    {% next_button %}
+
+{% endblock %}
