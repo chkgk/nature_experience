@@ -24,8 +24,8 @@ class Constants(BaseConstants):
     prob_switch_b_to_a = 0.01
 
     # timeouts
-    decision_timeout = 20 # 120s
-    feelings_timeout = 20 # 60s
+    decision_timeout = 120 # 120s
+    feelings_timeout = 60 # 60s
 
     # timeout banner is shown X seconds before timer runs out:
     time_left_warning = 30
