@@ -14,14 +14,31 @@
         {% if player.round_number == 1 %}
             Welcome to the second room.
         {% else %}
-            Welcome to the third room.
+            Welcome to the third room. Note: In this round, your preferred option is always directly implemented.
         {% endif %}
     </p>
+
     <p>
-        Now, you are matched with a computer, your co-player for this round.
+        {% if player.round_number == 1 %}
+            {% if player.treatment == 'human' %}
+                You are now matched with another participant, your co-player for this round.
+            {% else %}
+                You are now matched with a computer, your co-player for this round.
+            {% endif %}
+        {% else %}
+            {% if player.treatment == 'human' %}
+                Now, you are matched with another participant, your co-player for this round.
+            {% else %}
+                Now, you are matched with a computer, your co-player for this round.
+            {% endif %}
+        {% endif %}
     </p>
 
-    {% formfield player.choose_b %}
+    {% if player.round_number == 1 %}
+        {% formfield player.choose_b with label="Which option do you prefer?" %}
+    {% else %}
+        {% formfield player.choose_b with label="Which option do you choose?" %}
+    {% endif %}
 
     {% next_button %}
 

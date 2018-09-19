@@ -59,21 +59,21 @@ class Player(BasePlayer):
         choices=[[1, 'US$ 1'],
                  [2, 'US$ 0'],
                  [3, 'US$ 3']],
-        verbose_name='What is your payout if you choose A, your co-player chooses B, and the ball is red?',
+        verbose_name="What is your payout if action A is implemented for you, your co-player's action is B, and the ball is red?",
         widget=widgets.RadioSelect)
 
     c4_payoff_ab_green = models.SmallIntegerField(
         choices=[[1, 'US $ 1'],
                  [2, 'US $ 0'],
                  [3, 'US $ 3']],
-        verbose_name='What is your payout if you choose A, your co-player chooses B, and the ball is green?',
+        verbose_name="What is your payout if action A is implemented for you, your co-player's action is B, and the ball is green?",
         widget=widgets.RadioSelect)
 
     c5_payoff_bb_green = models.SmallIntegerField(
         choices=[[1, 'US $ 1'],
                  [2, 'US $ 0'],
                  [3, 'US $ 3']],
-        verbose_name='What is your payout if you choose B, your co-player chooses B, and the ball is green? ',
+        verbose_name="What is your payout if action B is implemented for you, your co-player's action is B, and the ball is green?",
         widget=widgets.RadioSelect)
 
 

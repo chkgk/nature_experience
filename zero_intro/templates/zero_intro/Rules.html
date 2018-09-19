@@ -19,32 +19,32 @@
         Three factors together determine your payoff from this decision:
         <ol>
             <li>The draw of a ball from an urn,</li>
-            <li>your own decision, and</li>
-            <li>the decision by your co-player.</li>
+            <li>your own action, and</li>
+            <li>the action of your co-player.</li>
         </ol>
     </p>
     <p>
         The urn from which the ball is drawn contains 100 balls. 20 balls are red, 80 are green. <br>
         If a red ball is drawn, you receive nothing (US$ 0) irrespective of your and your co-player’s decision. So does your co-player.  <br>
-        If a green ball is drawn, then your outcome depends on your and your co-player’s decision (see below). You will not know the outcome of the draw from the urn at the time of taking your decision.
+        If a green ball is drawn, then your outcome depends on your and your co-player’s action (see below). You will not know the outcome of the draw from the urn at the time of taking your decision.
     </p>
     <p>
-        For your own decision, you have a choice between two options: Either you choose option A or option B. Your co-player has the same choice. <br>
+        For your own action, you can choose whether you prefer option A or option B. Your preferred option may not necessarily be implemented as your action. But choosing your preferred option maximizes the chances that it is implemented. Your co-player's choice is always directly implemented. <br>
         These are the possibilities:
         <ul>
-            <li>A green ball is drawn and <b>you</b> choose <b>option A</b> and your <b>co-player</b> chooses <b>option A</b>: You receive US$ 1. So does your co-player.</li>
-            <li>A green ball is drawn and <b>you</b> choose <b>option A</b> and your <b>co-player</b> chooses <b>option B</b>: You receive US$ 1. Your co-player receives US$ 3.</li>
-            <li>A green ball is drawn and <b>you</b> choose <b>option B</b> and your <b>co-player</b> chooses <b>option A</b>: You receive US$ 3. Your co-player receives US$ 1.</li>
-            <li>A green ball is drawn and <b>you</b> choose <b>option B</b> and your <b>co-player</b> chooses <b>option B</b>: You receive nothing (US $ 0). So does your co-player.</li>
+            <li>A green ball is drawn and <b>action A is implemented for you</b> and your <b>co-player's action is A</b>: You receive US$ 1. So does your co-player.</li>
+            <li>A green ball is drawn and <b>action A is implemented for you</b> and your <b>co-player's action is B</b>: You receive US$ 1. Your co-player receives US$ 3.</li>
+            <li>A green ball is drawn and <b>action B is implemented for you</b> and your <b>co-player's action is A</b>: You receive US$ 3. Your co-player receives US$ 1.</li>
+            <li>A green ball is drawn and <b>action B is implemented for you</b> and your <b>co-player's action is B</b>: You receive nothing (US $ 0). So does your co-player.</li>
         </ul>
         To repeat: If a red ball has been drawn, you receive nothing (US$ 0).
     </p>
 
     <p>
         {% if player.treatment == "human" %}
-            Based on previous sessions of this experiment, a co-player chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases.
+            In a previous experiment, the co-player's action was A in about 60 out of 100 cases and B in about 40 out of 100 cases.
         {% else %}
-            On average, a computer chooses A in about 60 out of 100 cases and B in about 40 out of 100 cases.
+            On average, a computer's action is A in about 60 out of 100 cases and B in about 40 out of 100 cases.
         {% endif %}
     </p>
 

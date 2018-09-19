@@ -20,7 +20,8 @@ class Constants(BaseConstants):
     pi = 0.2
     ball_green_probability = 1 - pi
 
-    choice_implementation_probability = 0.6
+    prob_switch_a_to_b = 0.98
+    prob_switch_b_to_a = 0.01
 
     # timeouts
     decision_timeout = 20 # 120s
@@ -60,7 +61,7 @@ class Group(BaseGroup):
     dropout = models.BooleanField(initial=False, doc="whether or not a player has dropped out of the group")
 
     def draw_ball(self):
-        self.ball_green = random.random() <= Constants.ball_green_probability
+        self.ball_green = random.random() < Constants.ball_green_probability
 
     def get_coplayer_choices(self):
         for player in self.get_players():
@@ -109,10 +110,16 @@ class Player(BasePlayer):
 
     # methods
     def determine_implementation(self):
-        if random.random() <= Constants.choice_implementation_probability:
-            self.implement_b = self.choose_b
+        if self.round_number == 1:
+            random_number = random.random()
+            if self.choose_b:
+                self.implement_b = random_number >= Constants.prob_switch_b_to_a
+            else:
+                # a chosen
+                self.implement_b = random_number < Constants.prob_switch_a_to_b
         else:
-            self.implement_b = not self.choose_b
+            # in round two, choices are directly implemented.
+            self.implement_b = self.choose_b
 
     def set_partner(self):
         self.partner = self.get_others_in_group()[0].id_in_subsession

@@ -20,10 +20,10 @@ class PlayerBot(Bot):
         yield (pages.Introduction)
         if self.player.treatment == 'human':
             assert "co-player is another participant" in self.html
-            assert "co-player chooses A" in self.html
+            assert "In a previous experiment" in self.html
         else:
             assert "co-player is not a human" in self.html
-            assert "computer chooses A" in self.html
+            assert "On average, a computer" in self.html
 
         yield (pages.Rules)
 

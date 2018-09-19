@@ -21,7 +21,8 @@ class Constants(BaseConstants):
     computer_b_probability = 0.4
     ball_green_probability = 1 - pi
 
-    choice_implementation_probability = 0.6
+    prob_switch_a_to_b = 0.98
+    prob_switch_b_to_a = 0.01
 
     # note: False = red, True = green
     payoff_matrix = {
@@ -60,7 +61,6 @@ class Player(BasePlayer):
     choose_b = models.BooleanField(
         choices=[(False, "A"), (True, "B")],
         widget=widgets.RadioSelectHorizontal(),
-        verbose_name="What do you choose?",
         doc="whether the participant chose b or not"
     )
     other_choose_b = models.BooleanField(doc="whether the co-player chose b or not")
@@ -80,10 +80,15 @@ class Player(BasePlayer):
 
     # methods
     def determine_implementation(self):
-        if random.random() <= Constants.choice_implementation_probability:
-            self.implement_b = self.choose_b
+        if self.round_number == 1:
+            random_number = random.random()
+            if self.choose_b:
+                self.implement_b = random_number >= Constants.prob_switch_b_to_a
+            else:
+                # a chosen
+                self.implement_b = random_number < Constants.prob_switch_a_to_b
         else:
-            self.implement_b = not self.choose_b
+            self.implement_b = self.choose_b
 
     def get_coplayer_choice(self):
         self.other_choose_b = random.random() <= Constants.computer_b_probability
