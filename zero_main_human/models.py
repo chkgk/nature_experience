@@ -125,11 +125,16 @@ class Player(BasePlayer):
         self.partner = self.get_others_in_group()[0].id_in_subsession
 
     def get_coplayer_choice(self):
-        self.other_choose_b = self.get_others_in_group()[0].choose_b
+        others = self.get_others_in_group()
+        if others:
+            self.other_choose_b = others[0].choose_b
 
     def calculate_round_payoff(self):
-        if self.group.ball_green:
-            self.room_payoff = c(Constants.payoff_matrix[self.implement_b][self.other_choose_b])
+        if self.other_choose_b is not None:
+            if self.group.ball_green:
+                self.room_payoff = c(Constants.payoff_matrix[self.implement_b][self.other_choose_b])
+            else:
+                self.room_payoff = c(0)
         else:
             self.room_payoff = c(0)
 
@@ -140,4 +145,4 @@ class Player(BasePlayer):
 
     def end_game(self):
         self.participant.vars['go_to_the_end'] = True
-        self.participant.vars['game_ended'] = True
+        # self.participant.vars['game_ended'] = True

@@ -9,16 +9,23 @@
     <p>
         Thank you for your participation, your answers were transmitted.
     </p>
-    <p>
-        Your payment consists of the fixed reward of $0.50 and the payout from room 2 or room 3.
-    </p>
-    <p>
-        In your case, room <b>{{ payment_room }}</b> was chosen for payout, where you earned <b>{{ payment }}</b>.<br>
-        In total, you receive: {{ player.participant.payoff_plus_participation_fee }}.
-    </p>
+    {% if game_ended %}
+         <p>
+            Unfortunately, your co-player dropped out of the experiment early. We are sorry for the inconvenience.<br>
+            You receive {{ player.participant.payoff_plus_participation_fee }} for your participation.
+        </p>
+    {% else %}
+        <p>
+            Your payment consists of the fixed reward of $0.50 and the payout from room 2 or room 3.
+        </p>
+        <p>
+            In your case, room <b>{{ payment_room }}</b> was chosen for payout, where you earned <b>{{ payment }}</b>.<br>
+            In total, you receive: {{ player.participant.payoff_plus_participation_fee }}.
+        </p>
+    {% endif %}
 
     <p>
-        If you have any questions regarding this study, please write a mail to {{ experimenter_name }}:
+        If you have any questions regarding this study, please write an email to {{ experimenter_name }}:
         <a href="mailto:{{ experimenter_email }}">{{ experimenter_email }}</a>.
     </p>
     {% next_button %}

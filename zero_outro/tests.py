@@ -17,13 +17,24 @@ class PlayerBot(Bot):
             'risk': random.randint(0, 10)
         }
 
-        yield SubmissionMustFail(pages.Survey, {})
-        yield SubmissionMustFail(pages.Survey, {
-            'age': random.randint(13, 125),
-            'gender': random.choice(['Male', 'Female', 'Other', 'I prefer not to tell']),
-            'education': random.randint(2, 5),
-            'major': '',
-            'risk': random.randint(0, 10)
-        })
-        yield (pages.Survey, survey_answers)
-        yield (pages.LastPage)
+        if not self.player.participant.vars.get('go_to_the_end', False):
+            yield SubmissionMustFail(pages.Survey, {})
+            yield SubmissionMustFail(pages.Survey, {
+                'age': random.randint(13, 125),
+                'gender': random.choice(['Male', 'Female', 'Other', 'I prefer not to tell']),
+                'education': random.randint(2, 5),
+                'major': '',
+                'risk': random.randint(0, 10)
+            })
+            yield (pages.Survey, survey_answers)
+
+            if self.player.participant.vars.get('game_ended', False):
+                # check if other dropped out case is handled correctly
+                assert "Unfortunately" in self.html
+                print("yay")
+            else:
+                assert "Your payment consists"
+                print('ney')
+
+            assert "None" not in self.html
+            yield (pages.LastPage)

@@ -13,11 +13,13 @@ class Survey(CustomMturkPage):
 class LastPage(CustomMturkPage):
     def vars_for_template(self):
         return {
+            'game_ended': self.player.participant.vars.get('game_ended', False),
             'payment_room': self.player.participant.vars.get('payment_room', None),
             'payment': self.player.participant.vars.get('payment', None),
             'experimenter_name': self.session.config.get('experimenter_name', 'Florian Diekert'),
             'experimenter_email': self.session.config.get('experimenter_email', 'natcoop@awi.uni-heidelberg.de')
         }
+
 
 
 page_sequence = [

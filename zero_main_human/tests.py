@@ -7,10 +7,11 @@ import random
 
 class PlayerBot(Bot):
 
-    # cases = ['no_timeouts', 'decision_timeout', 'feelings_timeout']
-    # cases = ['feelings_timeout']
+    cases = ['no_timeouts', 'decision_timeout', 'feelings_timeout']
+    # cases = ['decision_timeout']
 
     def check_room_payoffs(self):
+        assert "None" not in self.html
         if not self.group.ball_green:
             assert self.player.room_payoff == c(0)
         else:
