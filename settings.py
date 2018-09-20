@@ -69,13 +69,13 @@ SESSION_CONFIGS = [
         'app_sequence': ['zero_intro', 'zero_main_bot', 'zero_outro'],
         'treatment': 'computer'
     },
-    {
-        'name': 'zero_main_outro_human',
-        'display_name': "Human - Main Part and Outro",
-        'num_demo_participants': 4,
-        'app_sequence': ['zero_main_human', 'zero_outro'],
-        'treatment': 'human'
-    },
+    # {
+    #     'name': 'zero_main_outro_human',
+    #     'display_name': "Human - Main Part and Outro",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['zero_main_human', 'zero_outro'],
+    #     'treatment': 'human'
+    # },
 ]
 
 mturk_hit_settings = {
