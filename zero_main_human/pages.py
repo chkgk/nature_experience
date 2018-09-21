@@ -6,7 +6,7 @@ from .models import Constants
 class GroupWaitPage(CustomMturkWaitPage):
     template_name = "zero_main_human/GroupingWaitPage.html"
     group_by_arrival_time = True
-    startwp_timer = 10 # 120
+    startwp_timer = 120 # 120
     skip_until_the_end_of = 'experiment'
 
     def is_displayed(self):
