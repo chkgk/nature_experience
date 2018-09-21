@@ -7,8 +7,8 @@ import random
 
 class PlayerBot(Bot):
 
-    cases = ['no_timeouts', 'decision_timeout', 'feelings_timeout']
-    # cases = ['decision_timeout']
+    # cases = ['no_timeouts', 'decision_timeout', 'feelings_timeout']
+    cases = ['no_timeouts']
 
     def check_room_payoffs(self):
         assert "None" not in self.html
@@ -29,8 +29,9 @@ class PlayerBot(Bot):
 
 
     def play_round(self):
+        choose_b = random.random() <= 0.4
         if self.case == 'no_timeouts':
-            yield (pages.Decision, {'choose_b': random.choice([True, False])})
+            yield (pages.Decision, {'choose_b': choose_b})
 
             if self.round_number == 1:
                 yield (pages.Belief_choice_chance_1, {'choice_chance_1': random.randint(0, 100)})
@@ -75,7 +76,7 @@ class PlayerBot(Bot):
 
         if self.case == 'feelings_timeout':
             if self.round_number == 1:
-                yield (pages.Decision, {'choose_b': random.choice([True, False])})
+                yield (pages.Decision, {'choose_b': choose_b})
 
                 if self.player.id_in_group == 1:
                     yield Submission(pages.Belief_choice_chance_1, {}, timeout_happened=True)

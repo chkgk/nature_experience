@@ -6,14 +6,16 @@ import random
 
 
 class PlayerBot(Bot):
-    cases = ['A', 'B']
+    # cases = ['A', 'B']
 
     def play_round(self):
+        decision = random.random() <= 0.4
 
-        decision = {
-            'A': False,
-            'B': True,
-        }[self.case]
+        # decision = {
+        #     'A': False,
+        #     'B': True,
+        # # }[self.case]
+        # }[random.choice(['A', 'B'])]
 
         yield (pages.Decision, {'choose_b': decision})
         if not self.player.ball_green:

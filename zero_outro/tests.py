@@ -31,10 +31,8 @@ class PlayerBot(Bot):
             if self.player.participant.vars.get('game_ended', False):
                 # check if other dropped out case is handled correctly
                 assert "Unfortunately" in self.html
-                print("yay")
             else:
                 assert "Your payment consists"
-                print('ney')
 
             assert "None" not in self.html
             yield (pages.LastPage)
