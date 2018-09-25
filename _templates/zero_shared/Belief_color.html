@@ -48,5 +48,17 @@
             $(this).find('.slider-handle:not(.hide)').show();
             $('.otree-btn-next').show();
         });
+        $('.otree-timer').hide()
+        $(function () {
+            // Hide the timer until only 'minutes' minutes are left
+            var seconds = {{ Constants.time_left_warning }};
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+                diff = event.offset.totalSeconds;
+                thediv = $('div.otree-timer');
+                if (diff < seconds) {
+                    thediv.show()
+                }
+            });
+        });
     </script>
 {% endblock %}

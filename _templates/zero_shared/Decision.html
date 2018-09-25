@@ -10,13 +10,13 @@
 {% endblock %}
 
 {% block content %}
-    <p>
-        {% if player.round_number == 1 %}
-            Welcome to the second room.
-        {% else %}
-            Welcome to the third room. Note: In this round, your preferred option is always directly implemented.
-        {% endif %}
-    </p>
+    {% if player.round_number == 1 %}
+        <p><img width="70%" src="{% static 'zero_shared/room_d1.png' %}"></p>
+        <p>Welcome to the second room.</p>
+    {% else %}
+        <p><img width="70%" src="{% static 'zero_shared/room_d2.png' %}"></p>
+        <p>Welcome to the third room. Note: In this round, your preferred option is always directly implemented.</p>
+    {% endif %}
 
     <p>
         {% if player.round_number == 1 %}
@@ -44,4 +44,21 @@
 
     {% include "zero_intro/ShortInstructions.html" %}
 
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $('.otree-timer').hide()
+        $(function () {
+            // Hide the timer until only 'minutes' minutes are left
+            var seconds = {{ Constants.time_left_warning }};
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+                diff = event.offset.totalSeconds;
+                thediv = $('div.otree-timer');
+                if (diff < seconds) {
+                    thediv.show()
+                }
+            });
+        });
+    </script>
 {% endblock %}

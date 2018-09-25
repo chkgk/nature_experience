@@ -85,7 +85,7 @@ mturk_hit_settings = {
     'frame_height': 500,
     'preview_template': 'zero_intro/MTurkPreview.html',
     'minutes_allotted_per_assignment': 25,
-    'expiration_hours': 7 * 24,  # 7 days
+    'expiration_hours': 3 * 24,  # 3 days
     # PRODUCTION ONLY
     # this would grant florians qualification, if we run it through his account.
     # 'grant_qualification_id': '3DA2M59FDW8FXK3OTJT76I16UG0RXG',# to prevent retakes
