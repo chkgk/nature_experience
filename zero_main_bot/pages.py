@@ -13,6 +13,7 @@ class Decision(Page):
         self.player.draw_ball()
         self.player.get_coplayer_choice()
         self.player.calculate_round_payoff()
+        self.player.set_vars_for_analysis()
         if self.round_number == Constants.num_rounds:
             self.player.set_final_payoff()
 
@@ -21,7 +22,7 @@ class Belief_choice_chance_1(Page):
     template_name = "zero_shared/Belief_choice_chance.html"
 
     form_model = 'player'
-    form_fields = ['choice_chance_1']
+    form_fields = ['chance_choice_1']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -57,10 +58,13 @@ class Belief_choice_chance_2(Page):
     template_name = "zero_shared/Belief_choice_chance.html"
 
     form_model = 'player'
-    form_fields = ['choice_chance_2']
+    form_fields = ['chance_choice_2']
 
     def is_displayed(self):
         return self.round_number == 1
+
+    def before_next_page(self):
+        self.player.set_perception_change()
 
     def vars_for_template(self):
         return {

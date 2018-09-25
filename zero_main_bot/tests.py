@@ -37,7 +37,7 @@ class PlayerBot(Bot):
             assert self.player.payoff == self.player.in_round(self.player.relevant_round).room_payoff
 
         if self.round_number == 1:
-            yield (pages.Belief_choice_chance_1, {'choice_chance_1': random.randint(0, 100)})
+            yield (pages.Belief_choice_chance_1, {'chance_choice_1': random.randint(0, 100)})
 
         yield (pages.Belief_color, {'green_red': random.randint(0, 100)})
         yield (pages.Belief_other, {'a_or_b': random.randint(0, 100)})
@@ -45,4 +45,4 @@ class PlayerBot(Bot):
 
         if self.round_number == 1:
             assert "learned the outcome" in self.html
-            yield (pages.Belief_choice_chance_2, {'choice_chance_2': random.randint(0, 100)})
+            yield (pages.Belief_choice_chance_2, {'chance_choice_2': random.randint(0, 100)})

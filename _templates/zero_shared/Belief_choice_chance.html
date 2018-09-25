@@ -40,9 +40,9 @@
             </td>
             <td align="center" width="410">
                 {% if second_time %}
-                    <input id="id_choice_chance_2" name="choice_chance_2" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+                    <input id="id_chance_choice_2" name="chance_choice_2" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
                 {% else %}
-                    <input id="id_choice_chance_1" name="choice_chance_1" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+                    <input id="id_chance_choice_1" name="chance_choice_1" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
                 {% endif %}
             </td>
             <td align="left" width="250">
@@ -58,9 +58,9 @@
     <script src="{% static "global/bootstrap-slider.min.js" %}"></script>
     <script type="text/javascript">
         {% if second_time %}
-            $("#id_choice_chance_2").slider();
+            $("#id_chance_choice_2").slider();
         {% else %}
-            $("#id_choice_chance_1").slider();
+            $("#id_chance_choice_1").slider();
         {% endif %}
         $('.otree-btn-next').hide();
         $('.slider-handle').hide();

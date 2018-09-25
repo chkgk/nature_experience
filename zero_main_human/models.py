@@ -76,6 +76,10 @@ class Group(BaseGroup):
         for player in self.get_players():
             player.set_final_payoff()
 
+    def set_vars_for_analysis(self):
+        for player in self.get_players():
+            player.set_vars_for_analysis()
+
 
 class Player(BasePlayer):
     # treatment
@@ -95,8 +99,8 @@ class Player(BasePlayer):
     implement_b = models.BooleanField(doc="whether b was actually implemented or not")
 
     # beliefs
-    choice_chance_1 = models.IntegerField(min=0, max=100, doc="belief choice / chance before results")
-    choice_chance_2 = models.IntegerField(min=0, max=100, doc="belief choice / chance after results")
+    chance_choice_1 = models.IntegerField(min=0, max=100, doc="belief choice / chance before results")
+    chance_choice_2 = models.IntegerField(min=0, max=100, doc="belief choice / chance after results")
     green_red = models.IntegerField(min=0, max=100, doc="belief ball red / green")
     a_or_b = models.IntegerField(min=0, max=100, doc="belief choice other a / b")
 
@@ -107,6 +111,15 @@ class Player(BasePlayer):
     # timeouts / dropouts
     timeout_decision = models.BooleanField(initial=False, doc="whether player timed out making a decision")
     timeout_feelings = models.BooleanField(initial=False, doc="whether player timed out answering the feelings questions")
+
+    # zero payoffs
+    zero_payoff = models.BooleanField(initial=False, doc="true if player received 0 as a payoff in the round for any reason")
+    zero_payoff_ball = models.BooleanField(initial=False, doc="true if player received 0 pay because of red ball draw")
+    zero_payoff_choice = models.BooleanField(initial=False, doc="true if player received 0 pay because of strat. choice")
+    zero_payoff_both = models.BooleanField(initial=False, doc="true if zero pay because of red ball and strat. choice")
+
+    # perception change
+    perception_change = models.IntegerField(min=-100, max=100, doc="change of belief choice/change, after minus before")
 
     # methods
     def determine_implementation(self):
@@ -146,3 +159,12 @@ class Player(BasePlayer):
     def end_game(self):
         self.participant.vars['go_to_the_end'] = True
         # self.participant.vars['game_ended'] = True
+
+    def set_vars_for_analysis(self):
+        self.zero_payoff = self.room_payoff == c(0)
+        self.zero_payoff_ball = (not self.group.ball_green) and not (self.other_choose_b and self.implement_b)
+        self.zero_payoff_choice = self.group.ball_green and self.other_choose_b and self.implement_b
+        self.zero_payoff_both = (not self.group.ball_green) and self.other_choose_b and self.implement_b
+
+    def set_perception_change(self):
+        self.perception_change = self.chance_choice_2 - self.chance_choice_1

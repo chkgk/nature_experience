@@ -58,3 +58,4 @@ class Player(BasePlayer):
             risks (0)? Please self-grade your choice (0-10).',
         widget=widgets.RadioSelectHorizontal(),
     )
+

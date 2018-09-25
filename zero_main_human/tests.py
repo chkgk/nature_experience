@@ -34,7 +34,7 @@ class PlayerBot(Bot):
             yield (pages.Decision, {'choose_b': choose_b})
 
             if self.round_number == 1:
-                yield (pages.Belief_choice_chance_1, {'choice_chance_1': random.randint(0, 100)})
+                yield (pages.Belief_choice_chance_1, {'chance_choice_1': random.randint(0, 100)})
 
             yield (pages.Belief_color, {'green_red': random.randint(0, 100)})
             yield (pages.Belief_other, {'a_or_b': random.randint(0, 100)})
@@ -49,7 +49,7 @@ class PlayerBot(Bot):
 
             if self.round_number == 1:
                 assert "learned the outcome" in self.html
-                yield (pages.Belief_choice_chance_2, {'choice_chance_2': random.randint(0, 100)})
+                yield (pages.Belief_choice_chance_2, {'chance_choice_2': random.randint(0, 100)})
 
         if self.case == 'decision_timeout':
             if self.round_number == 1:
@@ -58,7 +58,7 @@ class PlayerBot(Bot):
                 else:
                     yield (pages.Decision, {'choose_b': random.choice([True, False])})
 
-                    yield (pages.Belief_choice_chance_1, {'choice_chance_1': random.randint(0, 100)})
+                    yield (pages.Belief_choice_chance_1, {'chance_choice_1': random.randint(0, 100)})
 
                     yield (pages.Belief_color, {'green_red': random.randint(0, 100)})
                     yield (pages.Belief_other, {'a_or_b': random.randint(0, 100)})
@@ -81,7 +81,7 @@ class PlayerBot(Bot):
                 if self.player.id_in_group == 1:
                     yield Submission(pages.Belief_choice_chance_1, {}, timeout_happened=True)
                 else:
-                    yield (pages.Belief_choice_chance_1, {'choice_chance_1': random.randint(0, 100)})
+                    yield (pages.Belief_choice_chance_1, {'chance_choice_1': random.randint(0, 100)})
 
                     yield (pages.Belief_color, {'green_red': random.randint(0, 100)})
                     yield (pages.Belief_other, {'a_or_b': random.randint(0, 100)})
@@ -89,7 +89,7 @@ class PlayerBot(Bot):
                     self.check_room_payoffs()
 
                     yield(pages.Results)
-                    yield (pages.Belief_choice_chance_2, {'choice_chance_2': random.randint(0, 100)})
+                    yield (pages.Belief_choice_chance_2, {'chance_choice_2': random.randint(0, 100)})
 
             if self.round_number == 2:
                 if self.player.in_round(1).id_in_group == 1:

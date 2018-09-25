@@ -58,7 +58,7 @@ class Belief_choice_chance_1(CustomMturkPage):
     template_name = "zero_shared/Belief_choice_chance.html"
 
     form_model = 'player'
-    form_fields = ['choice_chance_1']
+    form_fields = ['chance_choice_1']
 
     timeout_seconds = Constants.feelings_timeout
     timeout_submission = {'choice_chance_1': 0}
@@ -125,6 +125,7 @@ class DecisionWaitPage(WaitPage):
         self.group.draw_ball()
         self.group.get_coplayer_choices()
         self.group.calculate_round_payoffs()
+        self.group.set_vars_for_analysis()
         if self.round_number == Constants.num_rounds:
             self.group.set_final_payoffs()
 
@@ -155,15 +156,17 @@ class Belief_choice_chance_2(CustomMturkPage):
     template_name = "zero_shared/Belief_choice_chance.html"
 
     form_model = 'player'
-    form_fields = ['choice_chance_2']
+    form_fields = ['chance_choice_2']
 
     def is_displayed(self):
         return self.round_number == 1 and not self.group.dropout and not self.player.timeout_feelings and not self.player.participant.vars.get('game_ended', False)
 
     def before_next_page(self):
+        self.player.set_perception_change()
         if self.timeout_happened:
             self.player.timeout_feelings = True
             self.player.end_game()
+            self.player.set_perception_change()
 
     def vars_for_template(self):
         return {
