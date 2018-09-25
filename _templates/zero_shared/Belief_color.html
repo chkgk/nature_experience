@@ -12,6 +12,11 @@
 
 {% block content %}
     <div align="center">
+        {% if player.round_number == 1 %}
+            <p><img width="70%" src="{% static 'zero_shared/room_d1.png' %}"></p>
+        {% else %}
+            <p><img width="70%" src="{% static 'zero_shared/room_d2.png' %}"></p>
+        {% endif %}
         <p>
             What is your gut feeling - is the color of the ball that was just drawn:
         </p>

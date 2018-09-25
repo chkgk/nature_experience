@@ -24,6 +24,8 @@ class Constants(BaseConstants):
     prob_switch_a_to_b = 0.98
     prob_switch_b_to_a = 0.01
 
+    time_left_warning = 20
+
     # note: False = red, True = green
     payoff_matrix = {
         False:
