@@ -10,7 +10,8 @@ SESSION_CONFIG_DEFAULTS = {
     'participation_fee': 0.50,
     'doc': "",
     'experimenter_name': "Christian König-Kersting",
-    'experimenter_email': "christian.koenig@awi.uni-heidelberg.de"
+    'experimenter_email': "christian.koenig@awi.uni-heidelberg.de",
+    'mturk_hit_settings': mturk_hit_settings,
 }
 
 SESSION_CONFIGS = [
@@ -117,7 +118,7 @@ mturk_hit_settings = {
         #    'QualificationTypeId': "3TW6VZEPPW5UL7N9GRPX9CW4P7VXPS",
         #    'Comparator': "DoesNotExist",
         # }
-    ]
+    ],
 }
 
 # ISO-639 code
@@ -158,3 +159,6 @@ SECRET_KEY = '(js*7-e9%&_d*0j3%0jd&m$_)qvppc0tp_%7pzhqq-mt8=k6k@'
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
 EXTENSION_APPS = ['otree_mturk_utils']
+
+AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
