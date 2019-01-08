@@ -1,0 +1,117 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Quiz (2/2)
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        .correct {
+            color: #339966;
+        }
+        .incorrect {
+            color: #ff0000;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <p>
+        <img width="70%" src="{% static 'v3_shared/room_diagram_quiz.png' %}">
+    </p>
+    
+    {{ form.c4_payoff_ab_red.label }}
+    {{ form.c4_payoff_ab_red }}
+    <div class="form-control-errors">
+        {{ form.c4_payoff_ab_red.errors }}
+    </div>
+    {% if page == 2 %}
+        {% if c4_ok %}
+            <p class="correct">Correct!</p>
+        {% else %}
+            <p>
+                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+                <em>
+                    List of payoffs
+                </em>
+            </p>
+        {% endif %}
+    {% endif %}
+    <hr/>
+
+    {{ form.c5_payoff_ab_green.label }}
+    {{ form.c5_payoff_ab_green }}
+    <div class="form-control-errors">
+        {{ form.c5_payoff_ab_green.errors }}
+    </div>
+    {% if page == 2 %}
+        {% if c5_ok %}
+            <p class="correct">Correct!</p>
+        {% else %}
+            <p>
+                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+                <em>
+                    List of payoffs
+                </em>
+            </p>
+        {% endif %}
+    {% endif %}
+    <hr/>
+
+    {{ form.c6_payoff_bb_green.label }}
+    {{ form.c6_payoff_bb_green }}
+    <div class="form-control-errors">
+        {{ form.c6_payoff_bb_green.errors }}
+    </div>
+    {% if page == 2 %}
+        {% if c6_ok %}
+            <p class="correct">Correct!</p>
+        {% else %}
+            <p>
+                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+                <em>
+                    List of payoffs
+                </em>
+            </p>
+        {% endif %}
+    {% endif %}
+    <hr/>
+
+    {{ form.c7_payoff_ba_green.label }}
+    {{ form.c7_payoff_ba_green }}
+    <div class="form-control-errors">
+        {{ form.c7_payoff_ba_green.errors }}
+    </div>
+    {% if page == 2 %}
+        {% if c7_ok %}
+            <p class="correct">Correct!</p>
+        {% else %}
+            <p>
+                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
+                <em>
+                    List of payoffs
+                </em>
+            </p>
+        {% endif %}
+    {% endif %}
+    {% next_button %}
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script type="text/javascript">
+        var page = {{ page|json }};
+        var c4_ok = {{ c4_ok|json }};
+        var c5_ok = {{ c5_ok|json }};
+        var c6_ok = {{ c6_ok|json }};
+        var c7_ok = {{ c7_ok|json }};
+
+        // if not all ok, relabel next button
+        if (!(c4_ok && c5_ok && c6_ok && c7_ok)) {
+            $(".otree-btn-next").html('check answers');
+        }
+    </script>
+{% endblock %}

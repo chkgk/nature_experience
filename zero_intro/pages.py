@@ -43,12 +43,10 @@ class Comprehension_2(Page):
         }
 
     def error_message(self, values):
-        if values["c1_coplayer"] != Constants.comprehension_solutions["c1_coplayer"][self.player.treatment] or \
-                values["c2_probabilities"] != Constants.comprehension_solutions["c2_probabilities"] or \
-                values["c3_payoff_ab_red"] != Constants.comprehension_solutions["c3_payoff_ab_red"] or \
-                values["c4_payoff_ab_green"] != Constants.comprehension_solutions["c4_payoff_ab_green"] or \
-                values["c5_payoff_bb_green"] != Constants.comprehension_solutions["c5_payoff_bb_green"] or \
-                values["c6_decision_importance"] != Constants.comprehension_solutions["c6_decision_importance"]:
+        if values["c4_payoff_ab_green"] != Constants.comprehension_solutions["c4_payoff_ab_green"] or \
+           values["c5_payoff_bb_green"] != Constants.comprehension_solutions["c5_payoff_bb_green"] or \
+           values["c6_decision_importance"] != Constants.comprehension_solutions["c6_decision_importance"] or \
+           values["c7_decision_importance"] != Constants.comprehension_solutions["c7_decision_importance"]:
             return "Please check your answers again!"
 
 

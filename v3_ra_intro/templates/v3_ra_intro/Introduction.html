@@ -1,0 +1,50 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Introduction
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        .center {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <p>
+        Thank you for participating.<br>
+        If you read these rules carefully and choose wisely, you can earn up to US$ 3.50 by participating in a game that involves other participants.
+    </p>
+    <p>
+       Completing this task will take about 7 minutes and it is important that you pay close attention during this time so that you do not spoil the task for you and the other participants.
+    </p>
+    <p>
+        After we have explained the game, there comes the task. The task has four stages.
+    </p>
+    <div class="center">
+        <img width="70%" src="{% static "v3_shared/room_diagram.png" %}"/>
+    </div>
+    <p>
+        <b>First</b>, you take a small <b>quiz</b> about the game. 
+    </p>
+    <p>
+        <b>Then</b> you are matched with another participant and the <b>first round</b> of the game is played. 
+    </p>
+    <p>
+        <b>Thereafter</b>, you are matched with a different participant and the <b>second round</b> of the game is played.
+    </p>
+    <p>
+        <b>Finally</b>, you are asked to fill out a short <b>survey</b>.
+    </p>
+    <p>
+        Note that only one of the two rounds will be selected for payment at random. As it is unknown which of the two rounds counts, it is important to pay equally close attention to both.
+    </p>
+    
+
+    {% next_button %}
+{% endblock %}
+
+

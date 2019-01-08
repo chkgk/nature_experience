@@ -8,7 +8,7 @@ mturk_hit_settings = {
     'title': 'Research in decision making',
     'description': 'Participate in a game and a short survey. Please note that the task is to be completed within 10-15 minutes as you are matched with a co-player.',
     'frame_height': 700,
-    'preview_template': 'zero_intro/MTurkPreview.html',
+    'preview_template': 'v3_ra_intro/MTurkPreview.html',
     'minutes_allotted_per_assignment': 25,
     'expiration_hours': 3 * 24,  # 3 days
     # PRODUCTION ONLY
@@ -63,60 +63,74 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-        'name': 'zero_intro_human',
-        'display_name': "Human - Intro",
+        'name': 'v3_intro',
+        'display_name': "RA - Intro",
         'num_demo_participants': 1,
-        'app_sequence': ['zero_intro'],
-        'treatment': 'human'
+        'app_sequence': ['v3_ra_intro'],
+        'treatment': 'RA'
     },
     {
-        'name': 'zero_main_human',
-        'display_name': "Human - Main Part",
-        'num_demo_participants': 4,
-        'app_sequence': ['zero_main_human'],
-    },
-    {
-        'name': 'zero_outro_human',
-        'display_name': "Human - Outro",
+        'name': 'v3_aa_complete',
+        'display_name': "AA - Complete",
         'num_demo_participants': 1,
-        'app_sequence': ['zero_outro'],
-        'treatment': 'human'
+        'app_sequence': ['v3_aa'],
+        'treatment': 'AA'
     },
-    {
-        'name': 'zero_human',
-        'display_name': "Human - Full Experiment",
-        'num_demo_participants': 4,
-        'app_sequence': ['zero_intro', 'zero_main_human', 'zero_outro'],
-        'treatment': 'human'
-    },
-    {
-        'name': 'zero_intro_bot',
-        'display_name': "Computer - Intro",
-        'num_demo_participants': 1,
-        'app_sequence': ['zero_intro'],
-        'treatment': 'computer'
-    },
-    {
-        'name': 'zero_main_bot',
-        'display_name': "Computer - Main Part",
-        'num_demo_participants': 1,
-        'app_sequence': ['zero_main_bot'],
-        'treatment': 'computer'
-    },
-    {
-        'name': 'zero_outro_bot',
-        'display_name': "Computer - Outro",
-        'num_demo_participants': 1,
-        'app_sequence': ['zero_outro'],
-        'treatment': 'computer'
-    },
-    {
-        'name': 'zero_bot',
-        'display_name': "Computer - Full Experiment",
-        'num_demo_participants': 1,
-        'app_sequence': ['zero_intro', 'zero_main_bot', 'zero_outro'],
-        'treatment': 'computer'
-    },
+    # {
+    #     'name': 'zero_intro_human',
+    #     'display_name': "Human - Intro",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['zero_intro'],
+    #     'treatment': 'human'
+    # },
+    # {
+    #     'name': 'zero_main_human',
+    #     'display_name': "Human - Main Part",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['zero_main_human'],
+    # },
+    # {
+    #     'name': 'zero_outro_human',
+    #     'display_name': "Human - Outro",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['zero_outro'],
+    #     'treatment': 'human'
+    # },
+    # {
+    #     'name': 'zero_human',
+    #     'display_name': "Human - Full Experiment",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['zero_intro', 'zero_main_human', 'zero_outro'],
+    #     'treatment': 'human'
+    # },
+    # {
+    #     'name': 'zero_intro_bot',
+    #     'display_name': "Computer - Intro",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['zero_intro'],
+    #     'treatment': 'computer'
+    # },
+    # {
+    #     'name': 'zero_main_bot',
+    #     'display_name': "Computer - Main Part",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['zero_main_bot'],
+    #     'treatment': 'computer'
+    # },
+    # {
+    #     'name': 'zero_outro_bot',
+    #     'display_name': "Computer - Outro",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['zero_outro'],
+    #     'treatment': 'computer'
+    # },
+    # {
+    #     'name': 'zero_bot',
+    #     'display_name': "Computer - Full Experiment",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['zero_intro', 'zero_main_bot', 'zero_outro'],
+    #     'treatment': 'computer'
+    # },
     # {
     #     'name': 'zero_main_outro_human',
     #     'display_name': "Human - Main Part and Outro",
