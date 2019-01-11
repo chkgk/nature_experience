@@ -75,7 +75,12 @@ class Comprehension2_check(Page):
            values["c7_payoff_ba_green"] != Constants.comprehension_solutions["c7_payoff_ba_green"]:
             return "Please check your answers again!"
 
+class ActionPreference(Page):
+    def is_displayed(self):
+        return self.player.aa_treatment
 
+    form_model = 'player'
+    form_fields = ["prefers_B"]
 
 page_sequence = [
     #Introduction,
@@ -84,5 +89,5 @@ page_sequence = [
     #Comprehension1_check,
     #Comprehension2,
     #Comprehension2_check,
-
+    ActionPreference
 ]

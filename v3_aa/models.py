@@ -18,10 +18,7 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    def creating_session(self):
-        for player in self.get_players():
-            player.aa_treatment = True
-            player.ra_treatment = False
+    pass
 
 
 class Group(BaseGroup):
@@ -29,5 +26,4 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    aa_treatment = models.BooleanField(initial=False)
-    ra_treatment = models.BooleanField(initial=False)
+    pass

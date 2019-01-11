@@ -63,18 +63,25 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-        'name': 'v3_intro',
+        'name': 'v3_intro_ra',
         'display_name': "RA - Intro",
         'num_demo_participants': 1,
         'app_sequence': ['v3_ra_intro'],
         'treatment': 'RA'
     },
     {
-        'name': 'v3_aa_complete',
-        'display_name': "AA - Complete",
+        'name': 'v3_intro_aa',
+        'display_name': "AA - Intro",
         'num_demo_participants': 1,
-        'app_sequence': ['v3_aa'],
+        'app_sequence': ['v3_ra_intro'],
         'treatment': 'AA'
+    },
+    {
+        'name': 'v3_ra_main',
+        'display_name': "RA - Main",
+        'num_demo_participants': 4,
+        'app_sequence': ['v3_ra_main'],
+        'treatment': 'RA'
     },
     # {
     #     'name': 'zero_intro_human',

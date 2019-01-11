@@ -28,9 +28,12 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def creating_session(self):
+        treatment = self.session.config.get('treatment')
+        aa_treatment = treatment == 'AA'
+        ra_treatment = treatment == 'RA'
         for player in self.get_players():
-            player.aa_treatment = False
-            player.ra_treatment = True
+            player.aa_treatment = aa_treatment
+            player.ra_treatment = ra_treatment
 
 
 class Group(BaseGroup):
