@@ -17,6 +17,9 @@ class Belief_other(Page):
     form_fields = ['a_or_b']
 
 class Motivation(Page):
+    form_model = 'player'
+    form_fields = ['motivation', 'motivation_other']
+
     def vars_for_template(self):
         # fix changer indicator
         return {

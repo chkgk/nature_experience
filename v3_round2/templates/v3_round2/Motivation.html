@@ -34,12 +34,15 @@
         <label for="id_motivation_3">Because nothing has changed.</label>
     {% endif %}
 
-     {% if changer %}
+    {% if changer %}
          <input type="radio" id="id_motivation_4" name="motivation" value="5">
          <label for="id_motivation_4">Because I have changed my opinion on what the best action is.</label>
     {% endif %}
 
+    <input type="radio" id="id_motivation_5" name="motivation" value="6">
+    <label for="id_motivation_5">Other (please specify below)</label>
 
+    <input type="text" id="id_motivation_other" name="motivation_other">
 
     {% next_button %}
 
