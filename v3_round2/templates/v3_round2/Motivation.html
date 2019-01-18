@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Questions
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static "global/bootstrap-slider.min.css" %}"/>
+{% endblock %}
+
+{% block content %}
+    <div align="center">
+        <img src="{% static 'v3_shared/room_diagram_second_round.png' %}"  height="150">
+    </div>
+
+    <input type="radio" id="id_motivation_0" name="motivation" value="1">
+    {% if changer %}
+        <label for="id_motivation_0">Because I wish my action had been {{ current_action }} in round 1.</label>
+    {% else %}
+        <label for="id_motivation_0">Because I am glad that my action was {{ current_action }} in round 1.</label>
+    {% endif %}
+
+    {% next_button %}
+
+{% endblock %}

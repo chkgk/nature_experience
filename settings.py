@@ -77,11 +77,32 @@ SESSION_CONFIGS = [
         'treatment': 'AA'
     },
     {
-        'name': 'v3_ra_main',
-        'display_name': "RA - Main",
+        'name': 'v3_ra_decision1',
+        'display_name': "RA - Decision Round 1",
         'num_demo_participants': 4,
-        'app_sequence': ['v3_ra_main'],
+        'app_sequence': ['v3_round1'],
         'treatment': 'RA'
+    },
+    {
+        'name': 'v3_aa_decision1',
+        'display_name': "AA - Decision Round 1",
+        'num_demo_participants': 4,
+        'app_sequence': ['v3_round1'],
+        'treatment': 'AA'
+    },
+    {
+        'name': 'v3_ra_decision2',
+        'display_name': "RA - Decision Round 2",
+        'num_demo_participants': 4,
+        'app_sequence': ['v3_round2'],
+        'treatment': 'RA'
+    },
+    {
+        'name': 'v3_aa_decision2',
+        'display_name': "AA - Decision Round 2",
+        'num_demo_participants': 4,
+        'app_sequence': ['v3_round2'],
+        'treatment': 'AA'
     },
     # {
     #     'name': 'zero_intro_human',

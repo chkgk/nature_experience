@@ -35,6 +35,9 @@ class Subsession(BaseSubsession):
             player.aa_treatment = aa_treatment
             player.ra_treatment = ra_treatment
 
+            player.participant.vars["aa_treatment"] = aa_treatment
+            player.participant.vars["ra_treatment"] = ra_treatment
+
 
 class Group(BaseGroup):
     pass
