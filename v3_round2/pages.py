@@ -22,11 +22,12 @@ class Motivation(Page):
         return {
             'changer': True,
             'first_round_action': 'A',
-            'current_action': 'B' if self.player.action1_b else 'A',
+            'current_action': 'B' if self.player.action2_b else 'A',
         }
 
 page_sequence = [
     Decision,
-    Belief_color,
-    Belief_other,
+    #Belief_color,
+    #Belief_other,
+    Motivation,
 ]
