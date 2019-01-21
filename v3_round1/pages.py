@@ -13,6 +13,7 @@ class DecisionAssignment(Page):
 
     def before_next_page(self):
         self.player.action1_b = True
+        self.player.set_participant_var()
 
 
 class Decision(Page):
@@ -21,6 +22,9 @@ class Decision(Page):
 
     form_model = 'player'
     form_fields = ['action1_b']
+
+    def before_next_page(self):
+        self.player.set_participant_var()
 
 
 class Belief_color(Page):

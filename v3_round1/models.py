@@ -45,3 +45,6 @@ class Player(BasePlayer):
     # beliefs
     green_red = models.IntegerField(min=0, max=100, doc="belief ball red / green")
     a_or_b = models.IntegerField(min=0, max=100, doc="belief choice other a / b")
+
+    def set_participant_var(self):
+        self.participant.vars["action1_b"] = self.action1_b

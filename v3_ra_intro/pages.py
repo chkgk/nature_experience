@@ -83,8 +83,8 @@ class ActionPreference(Page):
     form_fields = ["prefers_B"]
 
 page_sequence = [
-    #Introduction,
-    #Instructions1,
+    Introduction,
+    Instructions1,
     #Comprehension1,
     #Comprehension1_check,
     #Comprehension2,
