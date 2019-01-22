@@ -16,16 +16,13 @@ class Grouping(CustomMturkWaitPage):
         print('new arrival!', 'round', self.round_number)
         print('waiting', waiting_players)
 
-        # if len(waiting_players) >= 2:
-        #     print('round is 1, length is >= 2, match!')
-        #     return waiting_players[:2]
 
         # remove one player to check against all other
         picked_player = waiting_players.pop()
-        print('picked player', picked_player.id_in_subsession, 'old partner:', picked_player.former_partner_id_in_subsession)
+        print('picked player', picked_player.id_in_subsession, 'old partner:', picked_player.participant.vars.get('partner_1'))
         for player in waiting_players:
-            print('test against:', player.id_in_subsession, 'old partner:', player.former_partner_id_in_subsession)
-            if player.id_in_subsession == picked_player.former_partner_id_in_subsession:
+            print('test against:', player.id_in_subsession, 'old partner:', player.participant.vars.get('partner_1'))
+            if player.id_in_subsession == picked_player.participant.vars.get('partner_1'):
                 print('cannot match, have played with each other before')
             else:
                 print('match!')

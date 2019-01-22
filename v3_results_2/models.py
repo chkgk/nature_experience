@@ -35,9 +35,7 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    def creating_session(self):
-        for player in self.get_players():
-            player.former_partner_id_in_subsession = player.participant.vars.get('partner_1')
+    pass
 
 
 class Group(BaseGroup):
@@ -55,6 +53,7 @@ class Player(BasePlayer):
 
     def set_partner_action(self):
         self.action = self.participant.vars.get("action2_b", False)
+        self.former_partner_id_in_subsession = self.participant.vars.get('partner_1')
 
         partner = self.get_others_in_group()[0]
         self.partner_id_in_subsession = partner.id_in_subsession
@@ -76,3 +75,4 @@ class Player(BasePlayer):
 
         if not self.participant.vars.get('payment_room_1'):
             self.participant.vars["payment"] = self.room_payoff
+            self.payoff = self.room_payoff

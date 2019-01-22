@@ -13,6 +13,7 @@
         .incorrect {
             color: #ff0000;
         }
+
     </style>
 {% endblock %}
 
@@ -30,11 +31,8 @@
         {% if c4_ok %}
             <p class="correct">Correct!</p>
         {% else %}
-            <p>
-                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
-                <em>
-                    List of payoffs
-                </em>
+            <p class="incorrect">
+                Wrong! Please refer to the payoff reminder below and correct your answer.
             </p>
         {% endif %}
     {% endif %}
@@ -49,11 +47,8 @@
         {% if c5_ok %}
             <p class="correct">Correct!</p>
         {% else %}
-            <p>
-                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
-                <em>
-                    List of payoffs
-                </em>
+            <p class="incorrect">
+                Wrong! Please refer to the payoff reminder below and correct your answer.
             </p>
         {% endif %}
     {% endif %}
@@ -68,11 +63,8 @@
         {% if c6_ok %}
             <p class="correct">Correct!</p>
         {% else %}
-            <p>
-                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
-                <em>
-                    List of payoffs
-                </em>
+            <p class="incorrect">
+                   Wrong! Please refer to the payoff reminder below and correct your answer.
             </p>
         {% endif %}
     {% endif %}
@@ -87,18 +79,20 @@
         {% if c7_ok %}
             <p class="correct">Correct!</p>
         {% else %}
-            <p>
-                <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
-                <em>
-                    List of payoffs
-                </em>
+            <p class="incorrect">
+                Wrong! Please refer to the payoff reminder below and correct your answer.
             </p>
         {% endif %}
     {% endif %}
     {% next_button %}
 
-{% endblock %}
+    <p>
+        <button type="button" class="btn btn-secondary" id="show_reminder_button">Show payoff reminder</button>
+    </p>
 
+    {% include "v3_shared/ShortInstructions.html" %}
+
+{% endblock %}
 
 
 {% block scripts %}
@@ -109,9 +103,22 @@
         var c6_ok = {{ c6_ok|json }};
         var c7_ok = {{ c7_ok|json }};
 
-        // if not all ok, relabel next button
-        if (!(c4_ok && c5_ok && c6_ok && c7_ok)) {
+        // if not all ok, relabel next button and show payoff helper
+        if (page == 1) {
+            $('#payoff_reminder').hide();
+            $('#show_reminder_button').show();
             $(".otree-btn-next").html('check answers');
+        } else {
+            if (!(c4_ok && c5_ok && c6_ok && c7_ok)) {
+                $("#payoff_reminder").show();
+                $('#show_reminder_button').hide();
+                $(".otree-btn-next").html('check answers');
+            }
         }
+
+        $("#show_reminder_button").click(function(e) {
+            $('#show_reminder_button').hide();
+            $('#payoff_reminder').show();
+        });
     </script>
 {% endblock %}

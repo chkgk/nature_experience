@@ -71,4 +71,5 @@ class Player(BasePlayer):
 
         if self.participant.vars.get('payment_room_1'):
             self.participant.vars["payment"] = self.room_payoff
+            self.payoff = self.room_payoff
 

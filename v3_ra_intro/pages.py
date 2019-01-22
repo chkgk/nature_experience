@@ -85,9 +85,9 @@ class ActionPreference(Page):
 page_sequence = [
     Introduction,
     Instructions1,
-    #Comprehension1,
-    #Comprehension1_check,
-    #Comprehension2,
-    #Comprehension2_check,
+    Comprehension1,
+    Comprehension1_check,
+    Comprehension2,
+    Comprehension2_check,
     ActionPreference
 ]
