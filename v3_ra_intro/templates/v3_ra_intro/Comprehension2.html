@@ -18,9 +18,9 @@
 {% endblock %}
 
 {% block content %}
-    <p>
+    <div align="center">
         <img width="70%" src="{% static 'v3_shared/room_diagram_quiz.png' %}">
-    </p>
+    </div>
     
     {{ form.c4_payoff_ab_red.label }}
     {{ form.c4_payoff_ab_red }}
@@ -113,6 +113,9 @@
                 $("#payoff_reminder").show();
                 $('#show_reminder_button').hide();
                 $(".otree-btn-next").html('check answers');
+            } else {
+                $('#payoff_reminder').hide();
+                $('#show_reminder_button').hide();
             }
         }
 

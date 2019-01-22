@@ -17,7 +17,9 @@
 {% endblock %}
 
 {% block content %}
-    <p><img width="70%" src="{% static 'v3_shared/room_diagram_quiz.png' %}"></p>
+    <div align="center">
+        <img width="70%" src="{% static 'v3_shared/room_diagram_quiz.png' %}">
+    </div>
     <p>
         Welcome to the quiz. <br>
         Here you have the chance to check whether you have properly understood the rules of the game. Please answer the following questions.
@@ -35,7 +37,12 @@
             <p>
                 <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
                 <em>
-                    explanation co-player
+                    <p>
+                        First, you take a small quiz about the game.<br>
+                        Then you are matched with another participant and the first round of the game is played.<br>
+                        Thereafter, you are matched with a different participant and the second round of the game is played.<br>
+                        Finally, you are asked to fill out a short survey.
+                    </p>
                 </em>
             </p>
         {% endif %}
@@ -54,7 +61,7 @@
             <p>
                 <span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
                 <em>
-                    explanation probabilities
+                    In a previous experiment, the co-players’ action was A in about 60 out of 100 cases and B in about 40 out of 100 cases.
                 </em>
             </p>
         {% endif %}
@@ -72,7 +79,7 @@
         {% else %}
             <p><span class="incorrect">Wrong! Please read this part of the instructions again and correct your answer:</span><br/>
             <em>
-                decision importance
+                Note that only one of the two rounds will be selected for payment at random. As it is unknown which of the two rounds counts, it is important to pay equally close attention to both.
             </em></p>
         {% endif %}
     {% endif %}
