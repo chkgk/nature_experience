@@ -54,7 +54,7 @@ class Player(BasePlayer):
     room_payoff = models.CurrencyField()
 
     def set_partner_action(self):
-        self.action = player.participant.vars.get("action2_b", False)
+        self.action = self.participant.vars.get("action2_b", False)
 
         partner = self.get_others_in_group()[0]
         self.partner_id_in_subsession = partner.id_in_subsession
@@ -73,3 +73,6 @@ class Player(BasePlayer):
 
         self.participant.vars["ball_green_2"] = self.group.ball_green
         self.participant.vars["room_payoff_2"] = self.room_payoff
+
+        if not self.participant.vars.get('payment_room_1'):
+            self.participant.vars["payment"] = self.room_payoff

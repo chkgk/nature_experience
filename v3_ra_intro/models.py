@@ -3,6 +3,8 @@ from otree.api import (
     Currency as c, currency_range
 )
 
+import random
+
 
 author = 'Christian König-Kersting'
 
@@ -31,12 +33,15 @@ class Subsession(BaseSubsession):
         treatment = self.session.config.get('treatment')
         aa_treatment = treatment == 'AA'
         ra_treatment = treatment == 'RA'
+
         for player in self.get_players():
             player.aa_treatment = aa_treatment
             player.ra_treatment = ra_treatment
+            player.payment_room_1 = random.choice([True, False])
 
             player.participant.vars["aa_treatment"] = aa_treatment
             player.participant.vars["ra_treatment"] = ra_treatment
+            player.participant.vars["payment_room_1"] = player.payment_room_1
 
 
 class Group(BaseGroup):
@@ -46,6 +51,8 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     aa_treatment = models.BooleanField(initial=False)
     ra_treatment = models.BooleanField(initial=False)
+
+    payment_room_1 = models.BooleanField(doc="True if room 1 is paid, False if room 2 is paid.")
     
     c1_coplayer = models.SmallIntegerField(
         choices=[[1, 'the same participant in both rounds.'],

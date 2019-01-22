@@ -2,12 +2,25 @@
 {% load otree static %}
 
 {% block title %}
-    Decision Info
+    First Round
 {% endblock %}
 
 {% block content %}
-
-    Your action will be assigned.
+    <div align="center">
+        <img src="{% static 'v3_shared/room_diagram_first_round.png' %}" height="150">
+    </div>
+        <p>
+            Welcome to the first round of the game.
+        </p>
+        <p>
+            You are now a player in this game, where you can earn money if this round is selected for payout.
+        </p>
+        <p>
+            You are matched with another participant, your co-player for this round. Your co-player will choose an action, A or B, and a ball, red or green, will be drawn.
+        </p>
+        <p>
+            In this round, your action, A or B, is <b>assigned</b> to you.
+        </p>
 
     {% next_button %}
 
