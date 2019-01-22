@@ -1,0 +1,68 @@
+{% extends 'otree_mturk_utils/GenericExtendedWaitPage.html' %}
+{% load staticfiles otree_tags %}
+{% block title %}Please wait!{% endblock %}
+{% block styles %}
+    <style>
+        #left_to_wait {
+            font-weight: bold;
+        }
+
+        #finish_study {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div align="center">
+        <img src="{% static 'v3_shared/room_diagram_first_round.png' %}" height="150">
+        <p>
+            Please wait while we match your action to your co-player's action.
+        </p>
+    </div>
+
+
+    <div id="otree-timeout-warning" class="alert alert-warning" style="display:block;" align="center">
+        <p>You can finish the study if we are not done in:
+            <span class="glyphicon glyphicon-time"></span>
+            <strong><span id="otree-timer__time-left"></span></strong>
+        </p>
+    </div>
+
+    <form action="" method="post" role="form" class="form">
+        {% csrf_token %}
+        <div id='finish_study' class="alert alert-warning" align="center">
+            <p>You have waited for more than two minutes and may leave the study.<br/> If you do, you will still be compensated for your participation.</p>
+            <button class="btn btn-primary"
+                    name="endofgame" value="{{ player.pk }}">
+                Leave the study
+            </button>
+        </div>
+        <br>
+    </form>
+
+{% endblock %}
+
+{% block scripts %}
+    {% include 'otree_mturk_utils/waiting_page_channel.js.html' %}
+    <script src="{% static 'otree_mturk_utils/jquery.countdown.min.js' %}"></script>
+    <script type="text/javascript">
+        var currentDate = new Date();
+        var milliseconds = Math.floor({{ time_left|json }} * 1000
+        )
+        ;
+        $('div#otree-timeout-warning').show();
+        $('span#otree-timer__time-left').countdown(currentDate.valueOf() + milliseconds)
+            .on('update.countdown', function (event) {
+                // %-N is "Total count of minutes till the end, non-padded"
+                // %S is seconds left
+                var format = '%-N:%S';
+                var remainingTime = event.strftime(format);
+                $(this).html(remainingTime);
+            })
+            .on('finish.countdown', function (event) {
+                $('div#otree-timeout-warning').hide(duration = 0);
+                $('#finish_study').show();
+            });
+    </script>
+
+{% endblock %}

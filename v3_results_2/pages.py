@@ -7,7 +7,7 @@ from otree_mturk_utils.views import CustomMturkPage, CustomMturkWaitPage
 
 
 class Grouping(CustomMturkWaitPage):
-    # template_name = "v3_results_2/Grouping.html"
+    template_name = "v3_results_2/GroupingWaitPage.html"
     group_by_arrival_time = True
     startwp_timer = 120  # 120
     skip_until_the_end_of = 'experiment'
@@ -15,7 +15,6 @@ class Grouping(CustomMturkWaitPage):
     def get_players_for_group(self, waiting_players):
         print('new arrival!', 'round', self.round_number)
         print('waiting', waiting_players)
-
 
         # remove one player to check against all other
         picked_player = waiting_players.pop()
