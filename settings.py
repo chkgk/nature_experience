@@ -106,15 +106,27 @@ SESSION_CONFIGS = [
     },
     {
         'name': 'v3_results_1',
-        'display_name': "Results Round 1",
+        'display_name': "RA Results Round 1",
         'num_demo_participants': 4,
         'app_sequence': ['v3_results_1'],
+    },
+{
+        'name': 'v3_aa_results_1',
+        'display_name': "AA Results Round 1",
+        'num_demo_participants': 4,
+        'app_sequence': ['v3_aa_results_1'],
     },
     {
         'name': 'v3_results_2',
         'display_name': "Results Round 2",
         'num_demo_participants': 4,
         'app_sequence': ['v3_results_2'],
+    },
+    {
+        'name': 'v3_outro_ra',
+        'display_name': "Outro",
+        'num_demo_participants': 1,
+        'app_sequence': ['v3_ra_outro'],
     },
     {
         'name': 'v3_ra_complete',
@@ -127,7 +139,7 @@ SESSION_CONFIGS = [
         'name': 'v3_aa_complete',
         'display_name': "AA - Complete",
         'num_demo_participants': 4,
-        'app_sequence': ['v3_ra_intro', 'v3_round1', 'v3_results_1', 'v3_round2', 'v3_results_2', 'v3_ra_outro'],
+        'app_sequence': ['v3_ra_intro', 'v3_round1', 'v3_aa_results_1', 'v3_round2', 'v3_results_2', 'v3_ra_outro'],
         'treatment': 'AA'
     },
     # {

@@ -21,8 +21,8 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     def creating_session(self):
         for player in self.get_players():
-            player.aa_treatment = player.participant.vars.get('aa_treatment', True)
-            player.ra_treatment = player.participant.vars.get('ra_treatment', False)
+            player.aa_treatment = player.participant.vars.get('aa_treatment', self.session.config.get('treatment') == 'AA')
+            player.ra_treatment = player.participant.vars.get('ra_treatment', self.session.config.get('treatment') == 'RA')
             player.action1_b = player.participant.vars.get('action1_b', False)
 
             if settings.DEBUG:

@@ -4,10 +4,10 @@ from otree.api import (
 )
 from django.conf import settings
 
-author = 'Your name here'
+author = 'Christian König gen. Kersting'
 
 doc = """
-Your app description
+Round 1 of Nature of Experience experiment
 """
 
 
@@ -20,8 +20,8 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     def creating_session(self):
         for player in self.get_players():
-            player.aa_treatment = player.participant.vars.get('aa_treatment', True)
-            player.ra_treatment = player.participant.vars.get('ra_treatment', False)
+            player.aa_treatment = player.participant.vars.get('aa_treatment', self.session.config.get('treatment') == 'AA')
+            player.ra_treatment = player.participant.vars.get('ra_treatment', self.session.config.get('treatment') == 'RA')
 
             if settings.DEBUG:
                 player.aa_treatment = self.session.config.get('treatment', 'AA') == 'AA'
