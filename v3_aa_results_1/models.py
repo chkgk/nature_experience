@@ -60,7 +60,6 @@ class Subsession(BaseSubsession):
         self.a_observations = a_counter
         self.b_observations = b_counter
         self.b_proportion = b_counter / (b_counter + a_counter)
-        print(self.a_observations, self.b_observations, self.b_proportion)
 
 class Group(BaseGroup):
     pass

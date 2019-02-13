@@ -10,8 +10,6 @@ class PlayerBot(Bot):
 
     def play_round(self):
 
-        print(settings.DEBUG)
-
         if self.player.aa_treatment:
             yield (pages.DecisionInfo)
             yield (pages.DecisionAssignment)
