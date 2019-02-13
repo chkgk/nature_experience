@@ -4,13 +4,19 @@ from .models import Constants
 
 
 class FakeGrouping(Page):
-    timeout_seconds = 5
+    def get_timeout_seconds(self):
+        return self.player.matching_timeout
 
     def before_next_page(self):
         self.player.draw_ball()
         for player in self.group.get_players():
             player.set_partner_action()
             player.calculate_round_payoff()
+
+    def vars_for_template(self):
+        return {
+            "title_text": "Please wait!"
+        }
 
 
 class Results(Page):

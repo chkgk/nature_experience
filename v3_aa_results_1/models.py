@@ -36,7 +36,8 @@ class Constants(BaseConstants):
     }
 
     data_file = "v3_aa_results_1/data/v3_round1.csv"
-
+    min_wait = 5
+    max_wait = 20
 
 class Subsession(BaseSubsession):
     b_observations = models.IntegerField()
@@ -61,6 +62,9 @@ class Subsession(BaseSubsession):
         self.b_observations = b_counter
         self.b_proportion = b_counter / (b_counter + a_counter)
 
+        for player in self.get_players():
+            player.set_timeout()
+
 class Group(BaseGroup):
     pass
 
@@ -71,6 +75,10 @@ class Player(BasePlayer):
     room_payoff = models.CurrencyField()
 
     ball_green = models.BooleanField()
+    matching_timeout = models.IntegerField()
+
+    def set_timeout(self):
+        self.matching_timeout = random.randint(Constants.min_wait, Constants.max_wait)
 
     def draw_ball(self):
         self.ball_green = random.random() < Constants.ball_green_probability
