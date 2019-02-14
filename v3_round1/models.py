@@ -16,6 +16,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
 
+    min_wait = 5
 
 class Subsession(BaseSubsession):
     def creating_session(self):

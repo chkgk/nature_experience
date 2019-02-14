@@ -32,9 +32,18 @@ class Motivation(Page):
         if values["motivation"] == 6 and (values["motivation_other"] is None or values["motivation_other"].strip() == ""):
             return "Please specify your motivation."
 
+class FakeWait(Page):
+    timeout_seconds = Constants.min_wait
+
+    def vars_for_template(self):
+        return {
+            "title_text": "Please wait!"
+        }
+
 page_sequence = [
     Decision,
     Belief_color,
     Belief_other,
     Motivation,
+    FakeWait,
 ]

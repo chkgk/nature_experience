@@ -9,7 +9,7 @@ from otree_mturk_utils.views import CustomMturkPage, CustomMturkWaitPage
 class Grouping(CustomMturkWaitPage):
     template_name = "v3_results_1/GroupingWaitPage.html"
     group_by_arrival_time = True
-    startwp_timer = 120  # 120y
+    startwp_timer = 115  # 115s +5s fake wait = 120s
     skip_until_the_end_of = 'experiment'
 
     def get_players_for_group(self, waiting_players):
