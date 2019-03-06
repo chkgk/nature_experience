@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Completed
+{% endblock %}
+
+{% block content %}
+    <p>
+        Thank you for your participation, your answers were transmitted.<br>
+        We are sorry that you could not complete all of the experiment because we failed to find a co-player for you.
+    </p>
+
+    <p>
+        Your payment consists of the fixed reward of $0.50.
+    </p>
+    <p>
+        If you have any questions regarding this study, please write an email to {{ experimenter_name }}:
+        <a href="mailto:{{ experimenter_email }}">{{ experimenter_email }}</a>.
+    </p>
+    {% next_button %}
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(".otree-btn-next").html('Finish Study');
+    </script>
+{% endblock %}
