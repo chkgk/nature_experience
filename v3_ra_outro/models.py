@@ -29,7 +29,7 @@ class Player(BasePlayer):
     # survey
     age = models.IntegerField(
         verbose_name='What is your age?',
-        min=13, max=125
+        min=18, max=99
     )
 
     gender = models.StringField(

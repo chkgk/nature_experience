@@ -103,7 +103,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect)
 
     prefers_B = models.BooleanField(
-        choices=[(False, 'Option A'), (True, 'Option B')],
+        choices=[(False, 'Action A'), (True, 'Action B')],
         verbose_name="A final question, for which there is no right or wrong answer: Which action would you choose?",
         blank=True,
         widget=widgets.RadioSelect)
