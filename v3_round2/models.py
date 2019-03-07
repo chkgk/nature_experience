@@ -24,7 +24,6 @@ class Subsession(BaseSubsession):
         for player in self.get_players():
             player.aa_treatment = player.participant.vars.get('aa_treatment', self.session.config.get('treatment') == 'AA')
             player.ra_treatment = player.participant.vars.get('ra_treatment', self.session.config.get('treatment') == 'RA')
-            player.action1_b = player.participant.vars.get('action1_b', False)
 
             if settings.DEBUG:
                 player.aa_treatment = self.session.config.get('treatment', 'AA') == 'AA'
@@ -62,6 +61,7 @@ class Player(BasePlayer):
     motivation_other = models.CharField(blank=True)
 
     def determine_switch(self):
+        self.action1_b = self.participant.vars.get('action1_b', False)
         self.switcher = self.action1_b != self.action2_b
         self.participant.vars["action2_b"] = self.action2_b
         self.participant.vars["switcher"] = self.switcher
