@@ -35,7 +35,7 @@ class Constants(BaseConstants):
             }
     }
 
-    data_file = "__temp_bots_Mar06_15h23m51.1s/v3_round1.csv"
+    data_file = "v3_aa_results_1/data/v3_round1.csv"
     min_wait = 5
     max_wait = 20
 
