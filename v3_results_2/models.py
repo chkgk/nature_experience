@@ -78,4 +78,4 @@ class Player(BasePlayer):
         else:
             self.payoff = self.room_payoff
 
-        self.participant.vars["payment"] = self.room_payoff
+        self.participant.vars["payment"] = self.payoff
