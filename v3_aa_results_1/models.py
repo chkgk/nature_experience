@@ -101,6 +101,3 @@ class Player(BasePlayer):
         self.participant.vars["ball_green_1"] = self.ball_green
         self.participant.vars["room_payoff_1"] = self.room_payoff
 
-        if self.participant.vars.get('payment_room_1'):
-            self.participant.vars["payment"] = self.room_payoff
-            self.payoff = self.room_payoff
