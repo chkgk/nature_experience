@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        {% if view.is_debug %}
+        {% if view.is_debug|default:False %}
             {% include 'otree/includes/debug_info.html' %}
         {% endif %}
     </div>
