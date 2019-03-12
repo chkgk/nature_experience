@@ -1,2 +1,2 @@
-otree[mturk]==2.1.12
+otree[mturk]>=2.1.39
 django-radiogrid

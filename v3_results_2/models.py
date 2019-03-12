@@ -17,7 +17,7 @@ class Constants(BaseConstants):
     players_per_group = 2
     num_rounds = 1
 
-    ball_green_probability = 0.4 # double check
+    ball_green_probability = 0.8 # double check
 
     # note: False = red, True = green
     payoff_matrix = {
