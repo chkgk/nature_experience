@@ -13,7 +13,7 @@ mturk_hit_settings = {
     'expiration_hours': 3 * 24,  # 3 days
     # PRODUCTION ONLY
     # this would grant florians qualification, if we run it through his account.
-    # 'grant_qualification_id': '3DA2M59FDW8FXK3OTJT76I16UG0RXG',# to prevent retakes
+    'grant_qualification_id': '3DA2M59FDW8FXK3OTJT76I16UG0RXG',# to prevent retakes
 
     # alternatively, if we use Christian's account:
     # 'grant_qualification_id': '3X4G950TG9JM27SOMLGT6VJ1IU8P1C',
@@ -21,22 +21,22 @@ mturk_hit_settings = {
 
     # 'grant_qualification_id': '3TW6VZEPPW5UL7N9GRPX9CW4P7VXPS',# to prevent retakes
     'qualification_requirements': [
-        # # PRODUCTION ONLY
-        # {
-        #     'QualificationTypeId': "00000000000000000071",
-        #     'Comparator': "EqualTo",
-        #     'LocaleValues': [{'Country': "US"}]
-        # },
-        # # qualification granted by Florian's Experiments
-        # {
-        #     'QualificationTypeId': "3DA2M59FDW8FXK3OTJT76I16UG0RXG",
-        #     'Comparator': "DoesNotExist",
-        # },
-        # # qualification granted by Christian's runs
-        # {
-        #     'QualificationTypeId': "3X4G950TG9JM27SOMLGT6VJ1IU8P1C",
-        #     'Comparator': "DoesNotExist",
-        # },
+        # PRODUCTION ONLY
+        {
+            'QualificationTypeId': "00000000000000000071",
+            'Comparator': "EqualTo",
+            'LocaleValues': [{'Country': "US"}]
+        },
+        # qualification granted by Florian's Experiments
+        {
+            'QualificationTypeId': "3DA2M59FDW8FXK3OTJT76I16UG0RXG",
+            'Comparator': "DoesNotExist",
+        },
+        # qualification granted by Christian's runs
+        {
+            'QualificationTypeId': "3X4G950TG9JM27SOMLGT6VJ1IU8P1C",
+            'Comparator': "DoesNotExist",
+        },
         # SANDBOX ONLY
         # {
         #    'QualificationTypeId': "3TW6VZEPPW5UL7N9GRPX9CW4P7VXPS",
