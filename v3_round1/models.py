@@ -34,18 +34,18 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    aa_treatment = models.BooleanField(initial=False)
-    ra_treatment = models.BooleanField(initial=False)
+    aa_treatment = models.BooleanField(initial=False, doc="True (1) if AA treatment, else False (0)")
+    ra_treatment = models.BooleanField(initial=False, doc="True (1) if RA treatment, else False (0)")
 
     action1_b = models.BooleanField(
         choices=[(False, "A"), (True, "B")],
         widget=widgets.RadioSelect(),
         verbose_name="Which action do you choose?",
-        doc="whether the participant chose b or not")
+        doc="Round 1, True (1) if participant chose B, else False (0).")
 
     # beliefs
-    green_red = models.IntegerField(min=0, max=100, doc="belief ball red / green")
-    a_or_b = models.IntegerField(min=0, max=100, doc="belief choice other a / b")
+    green_red = models.IntegerField(min=0, max=100, doc="Round 1, Belief about ball being red or green.")
+    a_or_b = models.IntegerField(min=0, max=100, doc="Round 1, Belief about others' action being A or B")
 
     def set_participant_var(self):
         self.participant.vars["action1_b"] = self.action1_b

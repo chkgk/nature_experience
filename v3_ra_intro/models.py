@@ -49,21 +49,23 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    aa_treatment = models.BooleanField(initial=False)
-    ra_treatment = models.BooleanField(initial=False)
+    aa_treatment = models.BooleanField(initial=False, doc="True (1) if AA treatment, else False (0)")
+    ra_treatment = models.BooleanField(initial=False, doc="True (1) if RA treatment, else False (0)")
 
-    payment_room_1 = models.BooleanField(doc="True if room 1 is paid, False if room 2 is paid.")
+    payment_room_1 = models.BooleanField(doc="True (1) if room 1 is selected for payment, False (0) if room 2 is selected.")
     
     c1_coplayer = models.SmallIntegerField(
         choices=[[1, 'the same participant in both rounds.'],
                  [2, 'a different participant in each round.']],
         verbose_name='1. Which of the following is correct? In the first round and in the second round, my co-player is',
+        doc="Answer to comprehension question 1 (co-player)",
         widget=widgets.RadioSelect)
 
     c2_probabilities = models.SmallIntegerField(
         choices=[[1, 'choose A more often than B.'],
                  [2, 'choose B more often than A.'],
                  [3, 'choose A and B equally often.']],
+        doc="Answer to comprehension question 2 (probabilities of A and B)",
         verbose_name='2. Which of the following is correct? On average, co-players',
         widget=widgets.RadioSelect)
 
@@ -72,6 +74,7 @@ class Player(BasePlayer):
                  [2, 'The outcomes of both rounds are equally important.'],
                  [3, 'The outcome of round 2 is less important than the outcome of round 1.']],
         verbose_name='3. Remember that only one of the two rounds counts for your payment, with equal chance. What does this mean?',
+        doc="Answer to comprehension question 3 (decision importance of the two rounds)",
         widget=widgets.RadioSelect)
 
     c4_payoff_ab_red = models.SmallIntegerField(
@@ -79,6 +82,7 @@ class Player(BasePlayer):
                  [2, 'US$ 1'],
                  [3, 'US$ 3']],
         verbose_name="4. What is your payout if your action is A, your co-player’s action is B, and the ball is red?",
+        doc="Answer to comprehension question 4 (payoff AB, red)",
         widget=widgets.RadioSelect)
 
     c5_payoff_ab_green = models.SmallIntegerField(
@@ -86,6 +90,7 @@ class Player(BasePlayer):
                  [2, 'US $ 1'],
                  [3, 'US $ 3']],
         verbose_name="5. What is your payout if your action is A, your co-player’s action is B, and the ball is green?",
+        doc="Answer to comprehension question 5 (payoff AB, green)",
         widget=widgets.RadioSelect)
 
     c6_payoff_bb_green = models.SmallIntegerField(
@@ -93,6 +98,7 @@ class Player(BasePlayer):
                  [2, 'US $ 1'],
                  [3, 'US $ 3']],
         verbose_name="6. What is your payout if your action is B, your co-player’s action is B, and the ball is green?",
+        doc="Answer to comprehension question 6 (payoff BB, green)",
         widget=widgets.RadioSelect)
 
     c7_payoff_ba_green = models.SmallIntegerField(
@@ -100,10 +106,12 @@ class Player(BasePlayer):
                  [2, 'US $ 1'],
                  [3, 'US $ 3']],
         verbose_name="7. What is your payout if your action is B, your co-player’s action is A, and the ball is green?",
+        doc="Answer to comprehension question 7 (payoff BA, green)",
         widget=widgets.RadioSelect)
 
     prefers_B = models.BooleanField(
         choices=[(False, 'Action A'), (True, 'Action B')],
         verbose_name="A final question, for which there is no right or wrong answer: Which action would you choose?",
         blank=True,
+        doc="Preferred action, AA treatment only.",
         widget=widgets.RadioSelect)

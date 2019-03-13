@@ -38,16 +38,16 @@ class Subsession(BaseSubsession):
     pass
 
 class Group(BaseGroup):
-    ball_green = models.BooleanField()
+    ball_green = models.BooleanField(doc="True (1) if color of ball drawn is green in round 1, else False (0).")
 
     def draw_ball(self):
         self.ball_green = random.random() < Constants.ball_green_probability
 
 class Player(BasePlayer):
-    action = models.BooleanField()
-    others_action = models.BooleanField()
-    partner_id_in_subsession = models.IntegerField()
-    room_payoff = models.CurrencyField()
+    action = models.BooleanField(doc="True (1) if B was played in round 1, else False (0).")
+    others_action = models.BooleanField(doc="True (1) if co-player played B in round 1, else False (0).")
+    partner_id_in_subsession = models.IntegerField(doc="Round 1, Co-player's ID (in subsession)")
+    room_payoff = models.CurrencyField(doc="Payoff for room 1, if selected for payment.")
 
     def set_partner_action(self):
         self.action = self.participant.vars.get('action1_b')

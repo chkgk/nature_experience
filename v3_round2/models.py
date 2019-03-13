@@ -36,29 +36,29 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    aa_treatment = models.BooleanField(initial=False)
-    ra_treatment = models.BooleanField(initial=False)
+    aa_treatment = models.BooleanField(initial=False, doc="True (1) if AA treatment, else False (0)")
+    ra_treatment = models.BooleanField(initial=False, doc="True (1) if AA treatment, else False (0)")
 
     action1_b = models.BooleanField(
         choices=[(False, "A"), (True, "B")],
-        doc="whehter the participant chose b in round 1")
+        doc="Round 1, True (1) if participant chose B, else False (0).")
 
     action2_b = models.BooleanField(
         choices=[(False, "A"), (True, "B")],
         widget=widgets.RadioSelect(),
         verbose_name="Which action do you choose?",
-        doc="whether the participant chose b in round 2")
+        doc="Round 2, True (1) if participant chose B, else False (0).")
 
     switcher = models.BooleanField(
-        doc="whether or not the participant switched actions between rounds")
+        doc="True (1) if participant switched actions (A/B) between rounds.")
 
     # beliefs
-    green_red = models.IntegerField(min=0, max=100, doc="belief ball red / green")
-    a_or_b = models.IntegerField(min=0, max=100, doc="belief choice other a / b")
+    green_red = models.IntegerField(min=0, max=100, doc="Round 1, Belief about ball being red or green.")
+    a_or_b = models.IntegerField(min=0, max=100, doc="Round 1, Belief about others' action being A or B")
 
     # motivations for action choice in secound round
-    motivation = models.IntegerField(min=1, max=6)
-    motivation_other = models.CharField(blank=True)
+    motivation = models.IntegerField(min=1, max=6, doc="Motivation selected for switching, respectively sticking to the same action.")
+    motivation_other = models.CharField(blank=True, doc="Free text input for other motivations if motivation == 6")
 
     def determine_switch(self):
         self.action1_b = self.participant.vars.get('action1_b', False)

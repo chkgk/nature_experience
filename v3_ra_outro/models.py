@@ -29,13 +29,15 @@ class Player(BasePlayer):
     # survey
     age = models.IntegerField(
         verbose_name='What is your age?',
-        min=18, max=99
+        min=18, max=99,
+        doc="Participant's age"
     )
 
     gender = models.StringField(
         choices=['Male', 'Female', 'Other', 'I prefer not to tell'],
         verbose_name='What is your gender?',
-        widget=widgets.RadioSelect
+        widget=widgets.RadioSelect,
+        doc="Participant's gender"
     )
 
     education = models.IntegerField(
@@ -48,11 +50,13 @@ class Player(BasePlayer):
             (5, 'Graduate degree')
         ],
         verbose_name='What is the highest level of school you have completed or the highest degree you have received?',
+        doc="Participant's level of education",
         widget=widgets.RadioSelect)
 
     major = models.StringField(
         verbose_name='If you had at least some college education, please tell us your major: ',
-        blank=True
+        blank=True,
+        doc="Participant's major if they had at least some college education (education >= 3)"
     )
 
     risk = models.FloatField(
@@ -60,4 +64,5 @@ class Player(BasePlayer):
         verbose_name='How do you see yourself: Are you in general a person who takes risk (10) or do you try to avoid \
                 risks (0)? Please self-grade your choice (0-10).',
         widget=widgets.RadioSelectHorizontal(),
+        doc="SOEP Risk question, scale 0 (lowest) to 10 (highest) propensity to take risk."
     )

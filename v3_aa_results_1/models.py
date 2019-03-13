@@ -40,9 +40,9 @@ class Constants(BaseConstants):
     max_wait = 20
 
 class Subsession(BaseSubsession):
-    b_observations = models.IntegerField()
-    a_observations = models.IntegerField()
-    b_proportion = models.FloatField()
+    b_observations = models.IntegerField(doc="Number of times B was played in RA round 1 data, first 300 obs.")
+    a_observations = models.IntegerField(doc="Number of times A was played in RA round 1 data, first 300 obs.")
+    b_proportion = models.FloatField(doc="Proportion of B choices in RA round 1 data, first 300 obs.")
 
     def creating_session(self):
         a_counter = 0
@@ -71,12 +71,12 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    action = models.BooleanField()
-    others_action = models.BooleanField()
-    room_payoff = models.CurrencyField()
+    action = models.BooleanField(doc="True (1) if B was played in round 1, else False (0).")
+    others_action = models.BooleanField(doc="True (1) if co-player played B in round 1, else False (0).")
+    room_payoff = models.CurrencyField(doc="Payoff for room 1, if selected for payment.")
 
-    ball_green = models.BooleanField()
-    matching_timeout = models.IntegerField()
+    ball_green = models.BooleanField(doc="True (1) if color of ball drawn is green in round 1, else False (0).")
+    matching_timeout = models.IntegerField(doc="Randomly drawn waiting time for matching a co-player, 5-20s.")
 
     def set_timeout(self):
         self.matching_timeout = random.randint(Constants.min_wait, Constants.max_wait)
