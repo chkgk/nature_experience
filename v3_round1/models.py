@@ -44,8 +44,8 @@ class Player(BasePlayer):
         doc="Round 1, True (1) if participant chose B, else False (0).")
 
     # beliefs
-    green_red = models.IntegerField(min=0, max=100, doc="Round 1, Belief about ball being red or green.")
-    a_or_b = models.IntegerField(min=0, max=100, doc="Round 1, Belief about others' action being A or B")
+    green_red = models.IntegerField(min=0, max=100, doc="Round 1, Belief about ball being red (0) or green (100).")
+    a_or_b = models.IntegerField(min=0, max=100, doc="Round 1, Belief about others' action being A (0) or B (100)")
 
     def set_participant_var(self):
         self.participant.vars["action1_b"] = self.action1_b
