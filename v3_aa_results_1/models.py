@@ -61,6 +61,7 @@ class Subsession(BaseSubsession):
         self.a_observations = a_counter
         self.b_observations = b_counter
         self.b_proportion = b_counter / (b_counter + a_counter)
+        print(self.b_proportion)
 
         for player in self.get_players():
             player.set_timeout()

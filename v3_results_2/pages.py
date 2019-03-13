@@ -13,19 +13,24 @@ class Grouping(CustomMturkWaitPage):
     skip_until_the_end_of = 'experiment'
 
     def get_players_for_group(self, waiting_players):
-        print('new arrival!', 'round', self.round_number)
-        print('waiting', waiting_players)
+        print('new arrival,', 'waiting:', waiting_players)
 
-        # remove one player to check against all other
-        picked_player = waiting_players.pop()
-        print('picked player', picked_player.id_in_subsession, 'old partner:', picked_player.participant.vars.get('partner_1'))
-        for player in waiting_players:
-            print('test against:', player.id_in_subsession, 'old partner:', player.participant.vars.get('partner_1'))
-            if player.id_in_subsession == picked_player.participant.vars.get('partner_1'):
-                print('cannot match, have played with each other before')
-            else:
-                print('match!')
-                return [picked_player, player]
+        # if we are in the AA treatment, we can shorten the process
+        if waiting_players[0].participant.vars.get('aa_treatment', False):
+            if len(waiting_players) >= 2:
+                print('AA round 2, length is >= 2, match!')
+                return waiting_players[:2]
+        else:
+            # RA treatment, round 2
+            picked_player = waiting_players.pop()
+            print('picked player', picked_player.id_in_subsession, 'old partner:', picked_player.participant.vars.get('partner_1'))
+            for player in waiting_players:
+                print('test against:', player.id_in_subsession, 'old partner:', player.participant.vars.get('partner_1'))
+                if player.id_in_subsession == picked_player.participant.vars.get('partner_1'):
+                    print('cannot match, have played with each other before')
+                else:
+                    print('match!')
+                    return [picked_player, player]
 
     def after_all_players_arrive(self):
         # if participant leaves the study, they end up in a group of 1.
