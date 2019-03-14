@@ -8,10 +8,7 @@ class FakeGrouping(Page):
         return self.player.matching_timeout
 
     def before_next_page(self):
-        self.player.draw_ball()
-        for player in self.group.get_players():
-            player.set_partner_action()
-            player.calculate_round_payoff()
+        self.player.calculate_round_payoff()
 
     def vars_for_template(self):
         return {
@@ -20,7 +17,6 @@ class FakeGrouping(Page):
 
 
 class Results(Page):
-
     def vars_for_template(self):
         return {
             'own_action': 'B' if self.player.action else 'A',

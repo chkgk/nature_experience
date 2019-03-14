@@ -61,7 +61,6 @@ class Subsession(BaseSubsession):
         self.a_observations = a_counter
         self.b_observations = b_counter
         self.b_proportion = b_counter / (b_counter + a_counter)
-        print(self.b_proportion)
 
         for player in self.get_players():
             player.set_timeout()
@@ -81,21 +80,13 @@ class Player(BasePlayer):
     def set_timeout(self):
         self.matching_timeout = random.randint(Constants.min_wait, Constants.max_wait)
 
-    def draw_ball(self):
+    def calculate_round_payoff(self):
         self.ball_green = random.random() < Constants.ball_green_probability
-
-    def set_partner_action(self):
         self.action = self.participant.vars.get('action1_b', False)
-
-        # determine partner action here
         self.others_action = random.random() <= self.subsession.b_proportion
 
-    def calculate_round_payoff(self):
-        if self.others_action is not None:
-            if self.ball_green:
-                self.room_payoff = c(Constants.payoff_matrix[self.action][self.others_action])
-            else:
-                self.room_payoff = c(0)
+        if self.ball_green:
+            self.room_payoff = c(Constants.payoff_matrix[self.action][self.others_action])
         else:
             self.room_payoff = c(0)
 
