@@ -78,7 +78,7 @@ class Belief_choice_chance_1(CustomMturkPage):
 
 
 class Belief_color(CustomMturkPage):
-    template_name = "zero_shared/Belief_color.html"
+    template_name = "zero_shared/Belief_color1.html"
     form_model = 'player'
     form_fields = ['green_red']
 

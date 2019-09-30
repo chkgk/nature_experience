@@ -33,7 +33,7 @@ class Belief_choice_chance_1(Page):
         }
 
 class Belief_color(Page):
-    template_name = "zero_shared/Belief_color.html"
+    template_name = "zero_shared/Belief_color1.html"
     form_model = 'player'
     form_fields = ['green_red']
 
