@@ -49,20 +49,20 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def creating_session(self):
-        treatment = self.session.config.get('treatment')
-        if treatment not in ['AA', 'RA']:
-            treatment = random.choice(['AA', 'RA'])
-
-        aa_treatment = treatment == 'AA'
-        ra_treatment = treatment == 'RA'
+        config_treatment = self.session.config.get('treatment')
 
         for player in self.get_players():
-            player.aa_treatment = aa_treatment
-            player.ra_treatment = ra_treatment
+            if config_treatment not in ['AA', 'RA']:
+                treatment = random.choice(['AA', 'RA'])
+            else:
+                treatment = config_treatment
+
+            player.aa_treatment = treatment == 'AA'
+            player.ra_treatment = treatment == 'RA'
             player.payment_room_1 = random.choice([True, False])
 
-            player.participant.vars["aa_treatment"] = aa_treatment
-            player.participant.vars["ra_treatment"] = ra_treatment
+            player.participant.vars["aa_treatment"] = player.aa_treatment
+            player.participant.vars["ra_treatment"] = player.ra_treatment
             player.participant.vars["payment_room_1"] = player.payment_room_1
             player.participant.vars["bot_treatment"] = player.bot_treatment
 
