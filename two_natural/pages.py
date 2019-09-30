@@ -9,7 +9,7 @@ class Instructions1(Page):
     pass
 
 class Comprehension1(Page):
-    template_name = "v3_ra_intro/Comprehension1.html"
+    template_name = "two_natural/Comprehension1.html"
     form_model = "player"
     form_fields = ["c1_coplayer", "c2_probabilities", "c3_decision_importance"]
 
@@ -119,9 +119,6 @@ class Belief_other1(Page):
 class Match1(Page):
     timeout_seconds = Constants.min_wait
 
-    def is_displayed(self):
-        return self.player.ra_treatment
-
     def vars_for_template(self):
         return {
             "title_text": "Please wait!"
@@ -163,7 +160,7 @@ class Motivation(Page):
         if values["motivation"] == 6 and (values["motivation_other"] is None or values["motivation_other"].strip() == ""):
             return "Please specify your motivation."
 
-class Match2(CustomMturkPage):
+class Match2(Page):
     timeout_seconds = Constants.min_wait
 
     def vars_for_template(self):
@@ -181,15 +178,15 @@ class Results1(Page):
         return {
             'own_action': 'B' if self.player.action1_b else 'A',
             'others_action': 'B' if self.player.other_b_r1 else 'A',
-            'ball_color': 'green' if self.group.ball_green_r1 else 'red',
+            'ball_color': 'green' if self.player.ball_green_r1 else 'red',
         }
 
 class Results2(Page):
     def vars_for_template(self):
         return {
             'own_action': 'B' if self.player.action2_b else 'A',
-            'others_action': 'B' if self.player.pther_b_r2 else 'A',
-            'ball_color': 'green' if self.group.ball_green_r2 else 'red',
+            'others_action': 'B' if self.player.other_b_r2 else 'A',
+            'ball_color': 'green' if self.player.ball_green_r2 else 'red',
         }
     
 class Survey(Page):
@@ -221,9 +218,9 @@ page_sequence = [
     ActionPreference,
     DecisionInfo,
     DecisionAssignment,
-    Decision,
-    Belief_color,
-    Belief_other,
+    Decision1,
+    Belief_color1,
+    Belief_other1,
     Match1,
     Results1,
     Decision2,

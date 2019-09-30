@@ -26,7 +26,7 @@
                 <span class="green">green</span>
             </td>
             <td align="center" width="410">
-                <input id="id_green_red" name="green_red" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+                <input id="id_green_red_r1" name="green_red_r1" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
             </td>
             <td align="left" width="250">
                 <span class="red">red</span>
@@ -42,7 +42,7 @@
 {% block scripts %}
     <script src="{% static "global/bootstrap-slider.min.js" %}"></script>
     <script type="text/javascript">
-        $("#id_green_red").slider();
+        $("#id_green_red_r1").slider();
         $('.otree-btn-next').hide();
         $('.slider-handle').hide();
         $('.slider').on('mousedown', function (event) {

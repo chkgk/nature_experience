@@ -128,19 +128,39 @@ SESSION_CONFIGS = [
 #         'num_demo_participants': 1,
 #         'app_sequence': ['v3_ra_outro'],
 #     },
+#     {
+#         'name': 'v3_ra_complete',
+#         'display_name': "RA - Complete",
+#         'num_demo_participants': 4,
+#         'app_sequence': ['v3_ra_intro', 'v3_round1', 'v3_results_1', 'v3_round2', 'v3_results_2', 'v3_ra_outro'],
+#         'treatment': 'RA'
+#     },
+#     {
+#         'name': 'v3_aa_complete',
+#         'display_name': "AA - Complete",
+#         'num_demo_participants': 4,
+#         'app_sequence': ['v3_ra_intro', 'v3_round1', 'v3_aa_results_1', 'v3_round2', 'v3_results_2', 'v3_ra_outro'],
+#         'treatment': 'AA'
+#     },
     {
-        'name': 'v3_ra_complete',
-        'display_name': "RA - Complete",
-        'num_demo_participants': 4,
-        'app_sequence': ['v3_ra_intro', 'v3_round1', 'v3_results_1', 'v3_round2', 'v3_results_2', 'v3_ra_outro'],
+        'name': 'v3_bot_ra',
+        'display_name': "Bot - RA treatment",
+        'num_demo_participants': 2,
+        'app_sequence': ['two_natural'],
         'treatment': 'RA'
     },
     {
-        'name': 'v3_aa_complete',
-        'display_name': "AA - Complete",
-        'num_demo_participants': 4,
-        'app_sequence': ['v3_ra_intro', 'v3_round1', 'v3_aa_results_1', 'v3_round2', 'v3_results_2', 'v3_ra_outro'],
+        'name': 'v3_bot_aa',
+        'display_name': "Bot - AA treatment",
+        'num_demo_participants': 2,
+        'app_sequence': ['two_natural'],
         'treatment': 'AA'
+    },
+    {
+        'name': 'v3_bot_random',
+        'display_name': "Bot - random treatment",
+        'num_demo_participants': 4,
+        'app_sequence': ['two_natural'],
     },
     # {
     #     'name': 'v3_ra_after_result_1',

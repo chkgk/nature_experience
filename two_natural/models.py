@@ -50,6 +50,9 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     def creating_session(self):
         treatment = self.session.config.get('treatment')
+        if treatment not in ['AA', 'RA']:
+            treatment = random.choice(['AA', 'RA'])
+
         aa_treatment = treatment == 'AA'
         ra_treatment = treatment == 'RA'
 
@@ -174,7 +177,8 @@ class Player(BasePlayer):
         self.participant.vars["action2_b"] = self.action2_b
         self.participant.vars["switcher"] = self.switcher
 
-    ball_green = models.BooleanField(doc="True (1) if color of ball drawn is green in round 1, else False (0).")
+    ball_green_r1 = models.BooleanField(doc="True (1) if color of ball drawn is green in round 1, else False (0).")
+    ball_green_r2 = models.BooleanField(doc="True (1) if color of ball drawn is green in round 2, else False (0).")
 
     def draw_ball_r1(self):
         self.ball_green_r1 = random.random() < Constants.ball_green_probability
@@ -187,7 +191,7 @@ class Player(BasePlayer):
 
     def calculate_payoff_r1(self):
         if self.other_b_r1 is not None:
-            if self.group.ball_green_r1:
+            if self.ball_green_r1:
                 self.room_payoff_r1 = c(Constants.payoff_matrix[self.action1_b][self.other_b_r1])
             else:
                 self.room_payoff_r1 = c(0)
@@ -201,27 +205,27 @@ class Player(BasePlayer):
     room_payoff_r2 = models.CurrencyField(doc="Payoff for room 2, if selected for payment.")
 
     def draw_ball_r2(self):
-        self.ball_green_r1 = random.random() < Constants.ball_green_probabili
+        self.ball_green_r2 = random.random() < Constants.ball_green_probability
 
     def draw_action_r2(self):
         self.other_b_r2 = random.random() < Constants.action_b_probability
 
     def calculate_payoff_r2(self):
         if self.other_b_r2 is not None:
-            if self.group.ball_green_r2:
+            if self.ball_green_r2:
                 self.room_payoff_r2 = c(Constants.payoff_matrix[self.action2_b][self.other_b_r2])
             else:
                 self.room_payoff_r2 = c(0)
         else:
             self.room_payoff_r2 = c(0)
 
-        self.participant.vars["ball_green_2"] = self.group.ball_green_r2
+        self.participant.vars["ball_green_2"] = self.ball_green_r2
         self.participant.vars["room_payoff_2"] = self.room_payoff_r2
 
         if self.participant.vars.get('payment_room_1'):
             self.payoff = self.participant.vars["room_payoff_1"]
         else:
-            self.payoff = self.room_payoff
+            self.payoff = self.room_payoff_r2
 
         self.participant.vars["payment"] = self.payoff
         
