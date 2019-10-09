@@ -204,7 +204,7 @@ class LastPage(Page):
             'payment_room': '1' if self.player.participant.vars.get('payment_room_1', None) else '2',
             'payment': self.player.participant.vars.get('payment', None),
             'experimenter_name': self.session.config.get('experimenter_name', 'Christian Koenig'),
-            'experimenter_email': self.session.config.get('experimenter_email', 'christian.koenig@awi.uni-heidelberg.de')
+            'experimenter_email': self.session.config.get('experimenter_email', 'christian.koenig@uibk.ac.at')
         }
 
 
