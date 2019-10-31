@@ -44,7 +44,7 @@ class Constants(BaseConstants):
             }
     }
 
-    min_wait = 5
+    min_wait = 5 # change back to 5
 
 
 class Subsession(BaseSubsession):
