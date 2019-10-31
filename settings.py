@@ -6,9 +6,9 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 mturk_hit_settings = {
     'keywords': ['bonus', 'study', 'decision making'],
     'title': 'Research in decision making',
-    'description': 'Participate in a game and a short survey. Please note that the task is to be completed within 10-15 minutes as you are matched with a co-player.',
+    'description': 'Participate in a game and a short survey. Please note that the task is to be completed within 10-15 minutes.',
     'frame_height': 700,
-    'preview_template': 'v3_ra_intro/MTurkPreview.html',
+    'preview_template': 'two_natural/MTurkPreview.html',
     'minutes_allotted_per_assignment': 25,
     'expiration_hours': 3 * 24,  # 3 days
     # PRODUCTION ONLY
@@ -56,8 +56,8 @@ SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 1.00,
     'participation_fee': 0.50,
     'doc': "",
-    'experimenter_name': "Christian König",
-    'experimenter_email': "christian.koenig@awi.uni-heidelberg.de",
+    'experimenter_name': "Christian Koenig",
+    'experimenter_email': "christian.koenig@uibk.ac.at",
     'mturk_hit_settings': mturk_hit_settings,
 }
 

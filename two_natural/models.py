@@ -26,7 +26,7 @@ class Constants(BaseConstants):
         'c6_payoff_bb_green': 1,
         'c7_payoff_ba_green': 3
     }
-    
+
     ball_green_probability = 0.8 # double check
     action_b_probability = 0.4
 
@@ -134,7 +134,7 @@ class Player(BasePlayer):
         doc="Answer to comprehension question 7 (payoff BA, green)",
         widget=widgets.RadioSelect)
 
-    prefers_B = models.BooleanField(
+    prefers_b = models.BooleanField(
         choices=[(False, 'Action A'), (True, 'Action B')],
         verbose_name="A final question, for which there is no right or wrong answer: Which action would you choose?",
         blank=True,

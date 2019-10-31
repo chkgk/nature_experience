@@ -80,7 +80,7 @@ class ActionPreference(Page):
         return self.player.aa_treatment
 
     form_model = 'player'
-    form_fields = ["prefers_B"]
+    form_fields = ["prefers_b"]
 
 
 class DecisionInfo(Page):
